@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>TravelBooker Sri Lanka</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --j:#1A3025;--jm:#2C4F38;--jl:#3D6B4F;
+  --sf:#E8840A;--sl:#F5A83A;
+  --lo:#C94B6D;--oc:#1B7A8C;
+  --sd:#F2E8D5;--cr:#FBF7F0;--wh:#FFFEF9;
+  --ink:#1C1410;--mu:rgba(28,20,16,.55);
+  --sh:0 4px 24px rgba(28,20,16,.10);--r:6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--cr);color:var(--ink);overflow-x:hidden}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.ani{animation:up .5s ease both}
+
+/* ─── PAGES ─── */
+.pg{display:none}.pg.on{display:block}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  height:66px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;
+  background:rgba(251,247,240,.96);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(232,132,10,.18);
+}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--ink);cursor:pointer;text-decoration:none}
+.logo span{color:var(--sf)}
+.nav-links{display:flex;gap:1.6rem;list-style:none;align-items:center}
+.nav-links a{font-size:.875rem;font-weight:600;color:var(--ink);cursor:pointer;text-decoration:none;transition:color .2s;padding:.3rem 0;border-bottom:2px solid transparent}
+.nav-links a:hover,.nav-links a.active{color:var(--sf);border-bottom-color:var(--sf)}
+.nav-btn{background:var(--j);color:var(--sd)!important;padding:.42rem 1.1rem;border-radius:var(--r);border-bottom:none!important;transition:background .2s!important}
+.nav-btn:hover{background:var(--sf)!important}
+.nav-btn2{background:transparent;color:var(--j)!important;padding:.38rem 1.1rem;border-radius:var(--r);border:2px solid var(--j)!important;border-bottom:none!important;transition:all .2s!important}
+.nav-btn2:hover{background:var(--j)!important;color:var(--sd)!important}
+
+/* ─── BUTTONS ─── */
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.75rem 1.8rem;border-radius:var(--r);font-family:'Nunito',sans-serif;font-size:.875rem;font-weight:700;cursor:pointer;transition:all .22s;text-decoration:none;border:2px solid transparent}
+.btn-p{background:var(--j);color:var(--sd);border-color:var(--j)}.btn-p:hover{background:var(--sf);border-color:var(--sf);color:#fff}
+.btn-o{background:transparent;color:var(--j);border-color:var(--j)}.btn-o:hover{background:var(--j);color:var(--sd)}
+.btn-sf{background:var(--sf);color:#fff;border-color:var(--sf)}.btn-sf:hover{background:#c06d08}
+.btn-w{background:var(--sd);color:var(--j);border-color:var(--sd)}.btn-w:hover{background:transparent;color:var(--sd);border-color:var(--sd)}
+.btn-sm{padding:.45rem 1rem;font-size:.8rem}
+.btn-full{width:100%;justify-content:center}
+
+/* ═══════════════════════════
+   HOME PAGE
+═══════════════════════════ */
+.hero{
+  min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;padding:100px 5vw 60px;gap:3rem;
+  background:radial-gradient(ellipse at 70% 20%,rgba(232,132,10,.12),transparent 55%),radial-gradient(ellipse at 5% 85%,rgba(26,48,37,.10),transparent 45%),var(--cr);
+}
+.hero-txt .tag{display:inline-flex;align-items:center;gap:.4rem;background:rgba(232,132,10,.12);color:var(--sf);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .85rem;border-radius:20px;border:1px solid rgba(232,132,10,.25);margin-bottom:1.2rem}
+.hero-txt h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5.5vw,4.8rem);font-weight:700;line-height:1.03;margin-bottom:1.1rem}
+.hero-txt h1 em{font-style:italic;color:var(--sf)}
+.hero-txt p{font-size:1rem;font-weight:300;line-height:1.75;color:var(--mu);margin-bottom:2rem;max-width:430px}
+.hero-btns{display:flex;gap:.85rem;flex-wrap:wrap}
+.hero-stats{display:flex;gap:2.5rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(28,20,16,.1)}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;display:block;color:var(--j)}
+.stat-l{font-size:.72rem;color:var(--mu);font-weight:600;letter-spacing:.04em}
+.mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:195px 155px 195px;gap:10px}
+.mc{border-radius:10px;overflow:hidden;position:relative;background:var(--sd)}
+.mc:nth-child(1){grid-row:1/3}.mc:nth-child(3){grid-row:2/4}
+.mc img{width:100%;height:100%;object-fit:cover;transition:transform .4s;display:block}
+.mc:hover img{transform:scale(1.06)}
+.mc-lbl{position:absolute;bottom:10px;left:10px;background:rgba(26,48,37,.82);color:var(--sd);font-size:.68rem;font-weight:700;padding:.25rem .58rem;border-radius:3px}
+.mc-pr{position:absolute;top:10px;right:10px;background:var(--sf);color:#fff;font-size:.72rem;font-weight:700;padding:.25rem .58rem;border-radius:3px}
+
+/* PROMO BAR */
+.promo-bar{background:linear-gradient(90deg,var(--j),var(--jm));color:var(--sd);padding:.85rem 5vw;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.promo-bar p{font-size:.88rem;font-weight:500}
+.promo-code{background:rgba(242,232,213,.2);border:1px solid rgba(242,232,213,.35);padding:.22rem .75rem;border-radius:3px;font-weight:800;letter-spacing:.1em;font-size:.8rem}
+
+/* WHY US */
+.why-sec{background:var(--wh);padding:4.5rem 5vw}
+.sec-head{margin-bottom:2.5rem}
+.sec-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3.2vw,2.6rem);font-weight:700;line-height:1.15}
+.sec-head h2 em{font-style:italic;color:var(--sf)}
+.sec-head p{font-size:.9rem;color:var(--mu);margin-top:.45rem;max-width:460px;line-height:1.7}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.why-card{background:var(--cr);border-radius:10px;padding:1.6rem;text-align:center}
+.why-icon{font-size:2rem;margin-bottom:.8rem;display:block}
+.why-card h3{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;margin-bottom:.4rem}
+.why-card p{font-size:.8rem;color:var(--mu);line-height:1.6}
+
+/* HOW IT WORKS */
+.how-sec{background:var(--j);color:var(--sd);padding:4.5rem 5vw}
+.how-sec .sec-head h2{color:var(--sd)}
+.how-sec .sec-head p{color:rgba(242,232,213,.5)}
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:2rem}
+.how-step{text-align:center}
+.step-n{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;color:var(--sf);opacity:.35;display:block;line-height:1}
+.step-ico{font-size:2rem;margin:.35rem 0 .7rem;display:block}
+.how-step h3{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;margin-bottom:.4rem}
+.how-step p{font-size:.8rem;color:rgba(242,232,213,.5);line-height:1.6}
+
+/* CTA */
+.cta-sec{padding:5rem 5vw;background:linear-gradient(135deg,var(--sf),#b3650a);text-align:center;color:#fff}
+.cta-sec h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;margin-bottom:.85rem}
+.cta-sec p{font-size:.95rem;opacity:.82;max-width:440px;margin:0 auto 2rem;line-height:1.7}
+.cta-btns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
+
+/* FOOTER */
+footer{background:var(--j);color:rgba(242,232,213,.6);padding:3.5rem 5vw 1.8rem}
+.fg-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;padding-bottom:2rem;border-bottom:1px solid rgba(242,232,213,.1);margin-bottom:1.5rem}
+.fb p{font-size:.82rem;line-height:1.7;margin-top:.85rem;max-width:230px}
+.fc h4{color:var(--sd);font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem}
+.fc ul{list-style:none}.fc li{margin-bottom:.45rem}
+.fc a{text-decoration:none;color:rgba(242,232,213,.55);font-size:.82rem;transition:color .2s;cursor:pointer}
+.fc a:hover{color:var(--sf)}
+.fbot{display:flex;justify-content:space-between;font-size:.76rem}
+
+/* ═══════════════════════════
+   TOURS PAGE
+═══════════════════════════ */
+.tours-hero{background:var(--j);color:var(--sd);padding:110px 5vw 3rem;text-align:center}
+.tours-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;margin-bottom:.7rem}
+.tours-hero p{font-size:1rem;opacity:.7;max-width:480px;margin:0 auto;line-height:1.7}
+.tours-search-bar{background:var(--wh);padding:2rem 5vw;border-bottom:1px solid rgba(232,132,10,.15)}
+.sbar{display:flex;max-width:900px;border:2px solid var(--j);border-radius:var(--r);overflow:hidden}
+.sbar input,.sbar select{border:none;outline:none;padding:.78rem 1rem;font-family:'Nunito',sans-serif;font-size:.875rem;background:var(--wh);color:var(--ink);flex:1}
+.sbar select{border-left:1px solid rgba(28,20,16,.1);flex:.55;cursor:pointer}
+.sbar button{background:var(--j);color:var(--sd);border:none;padding:0 1.6rem;font-family:'Nunito',sans-serif;font-size:.875rem;font-weight:700;cursor:pointer;transition:background .2s;white-space:nowrap}
+.sbar button:hover{background:var(--sf)}
+.chips{display:flex;gap:.5rem;margin-top:.85rem;flex-wrap:wrap}
+.chip{background:rgba(26,48,37,.08);color:var(--jm);padding:.28rem .8rem;border-radius:20px;font-size:.75rem;font-weight:700;cursor:pointer;transition:all .2s}
+.chip:hover,.chip.on{background:var(--j);color:var(--sd)}
+.tours-grid-wrap{padding:2.5rem 5vw 4rem}
+.filter-sidebar-row{display:flex;gap:2.5rem;align-items:flex-start}
+.filter-panel{flex:0 0 220px;background:var(--wh);border-radius:10px;padding:1.4rem;box-shadow:var(--sh);position:sticky;top:86px}
+.filter-panel h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;margin-bottom:1.1rem;padding-bottom:.6rem;border-bottom:1px solid rgba(28,20,16,.08)}
+.filter-group{margin-bottom:1.2rem}
+.filter-group label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mu);display:block;margin-bottom:.6rem}
+.filter-opt{display:flex;align-items:center;gap:.5rem;font-size:.82rem;margin-bottom:.45rem;cursor:pointer}
+.filter-opt input{accent-color:var(--sf)}
+.filter-range{width:100%;accent-color:var(--sf)}
+.range-labels{display:flex;justify-content:space-between;font-size:.72rem;color:var(--mu);margin-top:.25rem}
+.tours-main{flex:1;min-width:0}
+.tours-top-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem}
+.tours-count{font-size:.875rem;color:var(--mu);font-weight:600}
+.sort-select{padding:.45rem .85rem;border:1.5px solid rgba(28,20,16,.15);border-radius:var(--r);font-family:'Nunito',sans-serif;font-size:.82rem;background:var(--wh);cursor:pointer}
+.t-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:1.4rem}
+
+/* TOUR CARD */
+.tcard{background:var(--wh);border-radius:10px;overflow:hidden;box-shadow:var(--sh);transition:transform .25s,box-shadow .25s;cursor:pointer}
+.tcard:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(28,20,16,.13)}
+.tc-img{height:200px;overflow:hidden;position:relative;background:var(--sd)}
+.tc-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s;display:block}
+.tcard:hover .tc-img img{transform:scale(1.05)}
+.tbadge{position:absolute;top:11px;left:11px;font-size:.67rem;font-weight:700;padding:.22rem .58rem;border-radius:3px;text-transform:uppercase;letter-spacing:.05em}
+.b-hot{background:var(--lo);color:#fff}.b-eco{background:var(--jl);color:#fff}
+.b-cult{background:var(--oc);color:#fff}.b-adv{background:#8B3A0F;color:#fff}
+.b-deal{background:var(--sf);color:var(--ink)}
+.wbtn{position:absolute;top:11px;right:11px;background:rgba(251,247,240,.9);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:.95rem;display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.wbtn:hover{transform:scale(1.1)}.wbtn.liked{color:var(--lo)}
+.tc-body{padding:1.15rem}
+.tc-loc{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--sf);margin-bottom:.32rem}
+.tc-name{font-family:'Cormorant Garamond',serif;font-size:1.12rem;font-weight:700;line-height:1.3;margin-bottom:.45rem}
+.tc-meta{display:flex;gap:.85rem;font-size:.76rem;color:var(--mu);margin-bottom:.9rem;flex-wrap:wrap}
+.tc-foot{display:flex;align-items:center;justify-content:space-between;padding-top:.85rem;border-top:1px solid rgba(28,20,16,.07)}
+.tc-price .from{font-size:.68rem;color:var(--mu);display:block}
+.tc-price .amt{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700}
+.tc-price .per{font-size:.7rem;color:var(--mu)}
+.tc-rating{font-size:.76rem;font-weight:700;display:flex;align-items:center;gap:.28rem}
+.stars{color:var(--sf)}
+.book-btn{display:block;width:100%;text-align:center;background:var(--j);color:var(--sd);border:none;padding:.62rem;border-radius:var(--r);font-family:'Nunito',sans-serif;font-size:.83rem;font-weight:700;cursor:pointer;margin-top:.85rem;transition:background .2s}
+.book-btn:hover{background:var(--sf)}
+
+/* ═══════════════════════════
+   TOUR DETAIL PAGE
+═══════════════════════════ */
+.tdp-hero{position:relative;height:460px;overflow:hidden;margin-top:66px}
+.tdp-hero img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.72)}
+.tdp-hero-ov{position:absolute;inset:0;display:flex;align-items:flex-end;padding:2.5rem 5vw;background:linear-gradient(to top,rgba(26,48,37,.75),transparent 60%)}
+.tdp-hero-cnt{color:#fff;max-width:700px}
+.tdp-crumb{font-size:.72rem;font-weight:600;opacity:.7;margin-bottom:.7rem;cursor:pointer}
+.tdp-crumb span:hover{opacity:1;text-decoration:underline}
+.tdp-badges{display:flex;gap:.45rem;margin-bottom:.7rem;flex-wrap:wrap}
+.tdp-hero-cnt h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,4vw,3rem);font-weight:700;line-height:1.1;margin-bottom:.65rem}
+.tdp-hero-meta{display:flex;gap:1.4rem;font-size:.82rem;font-weight:600;flex-wrap:wrap;opacity:.92}
+/* layout */
+.tdp-wrap{max-width:1200px;margin:0 auto;padding:2.5rem 5vw;display:grid;grid-template-columns:1fr 340px;gap:2.5rem;align-items:start}
+/* tabs */
+.tdp-tabs{display:flex;gap:0;border-bottom:2px solid rgba(28,20,16,.1);margin-bottom:2rem;overflow-x:auto;scrollbar-width:none}
+.tdp-tabs::-webkit-scrollbar{display:none}
+.tdp-tab{padding:.6rem 1.2rem;font-size:.84rem;font-weight:700;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--mu);transition:all .2s;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;font-family:'Nunito',sans-serif}
+.tdp-tab.on{border-bottom-color:var(--sf);color:var(--ink)}
+.tdp-tc{display:none;animation:up .3s ease}.tdp-tc.on{display:block}
+/* gallery row */
+.tdp-gallery{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:180px 180px;gap:7px;border-radius:8px;overflow:hidden;margin-bottom:2rem}
+.gi{overflow:hidden;background:var(--sd)}
+.gi:first-child{grid-row:1/3}
+.gi img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.gi:hover img{transform:scale(1.05)}
+/* about */
+.about-txt p{font-size:.9rem;line-height:1.85;color:rgba(28,20,16,.72);margin-bottom:.9rem}
+.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;margin:1.4rem 0}
+.hl-card{background:var(--wh);border-radius:8px;padding:1rem;text-align:center;box-shadow:0 2px 8px rgba(28,20,16,.06)}
+.hl-icon{font-size:1.6rem;display:block;margin-bottom:.35rem}
+.hl-lbl{font-size:.75rem;font-weight:700}.hl-val{font-size:.7rem;color:var(--mu);margin-top:.1rem}
+/* incl/excl */
+.incl-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.2rem}
+.incl-col h4{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.65rem}
+.incl-col.yes h4{color:var(--jl)}.incl-col.no h4{color:var(--lo)}
+.incl-list{list-style:none}
+.incl-list li{font-size:.8rem;color:var(--mu);padding:.22rem 0;display:flex;align-items:flex-start;gap:.45rem}
+.incl-list.yes li::before{content:"✓";color:var(--jl);font-weight:800;flex-shrink:0}
+.incl-list.no li::before{content:"✗";color:var(--lo);font-weight:800;flex-shrink:0}
+/* facilities */
+.fac-grid{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.fac-item{display:flex;align-items:center;gap:.7rem;background:var(--wh);border-radius:8px;padding:.8rem;box-shadow:0 2px 8px rgba(28,20,16,.05)}
+.fac-icon{font-size:1.2rem;flex-shrink:0}
+.fac-text{font-size:.8rem;font-weight:600}.fac-sub{font-size:.7rem;color:var(--mu)}
+/* reviews */
+.rev-sum{display:flex;align-items:center;gap:2rem;background:var(--wh);border-radius:10px;padding:1.3rem;margin-bottom:1.3rem;box-shadow:0 2px 8px rgba(28,20,16,.06)}
+.big-r{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;line-height:1}
+.rbar-row{display:flex;align-items:center;gap:.6rem;font-size:.73rem;margin-bottom:.3rem}
+.rbar-tr{flex:1;height:5px;background:rgba(28,20,16,.1);border-radius:3px;overflow:hidden}
+.rbar-fl{height:100%;border-radius:3px;background:var(--sf)}
+.rev-cards{display:flex;flex-direction:column;gap:1rem}
+.rev-card{background:var(--wh);border-radius:10px;padding:1.2rem;box-shadow:0 2px 8px rgba(28,20,16,.06)}
+.rc-hd{display:flex;align-items:center;gap:.7rem;margin-bottom:.65rem}
+.rc-av{width:36px;height:36px;border-radius:50%;background:var(--sd);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.rc-nm{font-weight:700;font-size:.83rem}.rc-dt{font-size:.7rem;color:var(--mu)}
+.rc-stars{color:var(--sf);font-size:.82rem;margin-bottom:.35rem}
+.rc-txt{font-size:.82rem;color:var(--mu);line-height:1.7;font-style:italic}
+/* booking sidebar */
+.book-side{background:var(--wh);border-radius:12px;padding:1.7rem;box-shadow:0 8px 30px rgba(28,20,16,.12);border:1px solid rgba(232,132,10,.14);position:sticky;top:86px}
+.bs-price{font-family:'Cormorant Garamond',serif;font-size:2.1rem;font-weight:700;color:var(--j);line-height:1}
+.bs-per{font-size:.78rem;color:var(--mu)}
+.bs-rat{display:flex;align-items:center;gap:.35rem;font-size:.8rem;font-weight:700;margin:.55rem 0 1.1rem}
+.bs-div{height:1px;background:rgba(28,20,16,.08);margin:1.1rem 0}
+.bs-lbl{font-size:.73rem;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.38rem}
+.bs-input{width:100%;padding:.65rem .85rem;border:1.5px solid rgba(28,20,16,.15);border-radius:var(--r);font-family:'Nunito',sans-serif;font-size:.87rem;background:var(--sd);color:var(--ink);transition:border-color .2s;margin-bottom:.85rem}
+.bs-input:focus{outline:none;border-color:var(--sf)}
+.bs-row{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:.85rem}
+.bs-row .bs-input{margin-bottom:0}
+.bs-sum{background:var(--sd);border-radius:var(--r);padding:.9rem 1rem;margin:1rem 0;font-size:.82rem}
+.bs-line{display:flex;justify-content:space-between;padding:.2rem 0;color:var(--mu)}
+.bs-tot{font-weight:800;font-size:.9rem;color:var(--ink);border-top:1px solid rgba(28,20,16,.12);padding-top:.45rem;margin-top:.3rem;display:flex;justify-content:space-between}
+.bs-note{font-size:.7rem;color:var(--mu);text-align:center;margin-top:.7rem;line-height:1.5}
+.bs-guarantee{display:flex;align-items:center;gap:.45rem;font-size:.7rem;color:var(--jm);font-weight:600;margin-top:.55rem;justify-content:center}
+
+/* ═══════════════════════════
+   AUTH MODAL
+═══════════════════════════ */
+.ov{display:none;position:fixed;inset:0;background:rgba(28,20,16,.65);backdrop-filter:blur(6px);z-index:500;align-items:center;justify-content:center;padding:1rem}
+.ov.on{display:flex}
+.modal{background:var(--wh);border-radius:14px;width:100%;max-width:460px;padding:2.2rem;box-shadow:0 24px 60px rgba(28,20,16,.22);position:relative;animation:up .3s ease}
+.mx{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.25rem;cursor:pointer;color:var(--mu);transition:color .2s}
+.mx:hover{color:var(--ink)}
+.m-logo{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;margin-bottom:1.3rem;display:block}
+.m-logo span{color:var(--sf)}
+.atabs{display:flex;border-bottom:2px solid rgba(28,20,16,.1);margin-bottom:1.4rem}
+.atab{padding:.52rem 1.1rem;font-size:.85rem;font-weight:700;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--mu);transition:all .2s;user-select:none}
+.atab.on{border-bottom-color:var(--sf);color:var(--ink)}
+.type-tabs{display:flex;gap:.6rem;margin-bottom:1.2rem}
+.type-tab{flex:1;padding:.55rem;border:2px solid rgba(28,20,16,.15);border-radius:var(--r);text-align:center;cursor:pointer;font-size:.82rem;font-weight:700;transition:all .2s;user-select:none}
+.type-tab.on{border-color:var(--sf);background:rgba(232,132,10,.07);color:var(--sf)}
+.fg{margin-bottom:1rem}
+.fg label{display:block;font-size:.76rem;font-weight:700;margin-bottom:.35rem;color:var(--mu)}
+.fg input,.fg select{width:100%;padding:.65rem .85rem;border:1.5px solid rgba(28,20,16,.17);border-radius:var(--r);font-family:'Nunito',sans-serif;font-size:.875rem;background:var(--sd);color:var(--ink);transition:border-color .2s}
+.fg input:focus,.fg select:focus{outline:none;border-color:var(--sf)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.m-note{text-align:center;margin-top:.85rem;font-size:.76rem;color:var(--mu)}
+.m-note a{color:var(--sf);text-decoration:none;cursor:pointer}
+.forgot{text-align:right;margin-bottom:.9rem}
+.forgot a{font-size:.76rem;color:var(--oc);text-decoration:none}
+.agent-info{background:rgba(27,122,140,.08);border:1px solid rgba(27,122,140,.2);border-radius:var(--r);padding:.85rem;margin-bottom:1rem;font-size:.8rem;color:var(--oc);line-height:1.6}
+
+/* ═══════════════════════════
+   BOOKING FORM PAGE
+═══════════════════════════ */
+.bf-wrap{padding-top:66px;min-height:100vh;background:var(--cr)}
+.bf-topbar{background:var(--wh);border-bottom:1px solid rgba(28,20,16,.08);padding:1rem 5vw;display:flex;align-items:center;gap:1rem}
+.bf-steps{background:var(--wh);padding:1.1rem 5vw;border-bottom:1px solid rgba(28,20,16,.06)}
+.steps-row{display:flex;align-items:center;max-width:480px}
+.step-itm{display:flex;flex-direction:column;align-items:center;flex:1;position:relative}
+.step-itm::after{content:'';position:absolute;top:17px;left:50%;right:-50%;height:2px;background:rgba(28,20,16,.12);z-index:0}
+.step-itm:last-child::after{display:none}
+.step-num{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;z-index:1;position:relative}
+.sn-cur{background:var(--sf);color:#fff}.sn-done{background:var(--jl);color:#fff}.sn-todo{background:#E5E7EB;color:#9CA3AF}
+.step-lbl{font-size:.67rem;font-weight:700;margin-top:.38rem;color:var(--mu);white-space:nowrap}
+.bf-layout{max-width:1050px;margin:0 auto;display:grid;grid-template-columns:1fr 330px;gap:2rem;padding:2.5rem 5vw}
+.bf-card{background:var(--wh);border-radius:10px;padding:1.8rem;box-shadow:var(--sh);margin-bottom:1.4rem}
+.bf-card h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.1rem;padding-bottom:.65rem;border-bottom:1px solid rgba(28,20,16,.08);display:flex;align-items:center;gap:.5rem}
+.bf-frow{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.bf-fg{margin-bottom:.9rem}
+.bf-fg label{display:block;font-size:.75rem;font-weight:700;margin-bottom:.35rem;color:var(--mu)}
+.bf-fg input,.bf-fg select,.bf-fg textarea{width:100%;padding:.65rem .85rem;border:1.5px solid rgba(28,20,16,.15);border-radius:var(--r);font-family:'Nunito',sans-serif;font-size:.875rem;background:var(--sd);color:var(--ink)}
+.bf-fg input:focus,.bf-fg select:focus,.bf-fg textarea:focus{outline:none;border-color:var(--sf)}
+.bf-fg textarea{resize:vertical;min-height:72px}
+.pm-opts{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.1rem}
+.pm-opt{flex:1;min-width:110px;border:2px solid rgba(28,20,16,.15);border-radius:var(--r);padding:.7rem;text-align:center;cursor:pointer;transition:all .2s;font-size:.8rem;font-weight:700}
+.pm-opt.on{border-color:var(--sf);background:rgba(232,132,10,.07)}
+.pm-icon{font-size:1.3rem;display:block;margin-bottom:.25rem}
+/* confirm screen */
+.confirm-screen{text-align:center;padding:4rem 2rem}
+.confirm-screen .big-emoji{font-size:4rem;margin-bottom:1rem}
+.confirm-screen h2{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;margin-bottom:.65rem}
+.confirm-screen p{font-size:.9rem;color:var(--mu);line-height:1.75;margin-bottom:1.8rem;max-width:480px;margin-inline:auto}
+.confirm-box{background:var(--wh);border-radius:12px;padding:1.6rem;box-shadow:var(--sh);text-align:left;margin-bottom:1.8rem;max-width:440px;margin-inline:auto}
+.confirm-box .line{font-size:.87rem;padding:.3rem 0;display:flex;gap:.5rem}
+
+/* ═══════════════════════════
+   PROFILE PAGE — NORMAL USER
+═══════════════════════════ */
+.profile-wrap{display:grid;grid-template-columns:230px 1fr;min-height:100vh;padding-top:66px}
+.sidebar{background:var(--j);padding:2.2rem 1.4rem;position:sticky;top:66px;height:calc(100vh - 66px);overflow-y:auto}
+.sidebar-user{display:flex;align-items:center;gap:.85rem;margin-bottom:1.8rem;padding-bottom:1.4rem;border-bottom:1px solid rgba(242,232,213,.15)}
+.sav{width:46px;height:46px;border-radius:50%;background:var(--sf);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.su-name{color:var(--sd);font-weight:700;font-size:.88rem}
+.su-role{font-size:.7rem;color:rgba(242,232,213,.55)}
+.snav{list-style:none}
+.snav a{display:flex;align-items:center;gap:.65rem;padding:.5rem .7rem;border-radius:var(--r);font-size:.82rem;font-weight:600;color:rgba(242,232,213,.6);text-decoration:none;cursor:pointer;transition:all .2s;margin-bottom:.18rem}
+.snav a:hover,.snav a.on{background:rgba(242,232,213,.12);color:var(--sd)}
+.snav .divider{height:1px;background:rgba(242,232,213,.1);margin:.7rem 0}
+.profile-content{padding:2.2rem 2.8rem;background:var(--cr)}
+.ph{margin-bottom:1.8rem}
+.ph h1{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700}
+.ph p{color:var(--mu);font-size:.85rem;margin-top:.28rem}
+.panel{display:none;animation:up .35s ease}
+.panel.on{display:block}
+.pcard{background:var(--wh);border-radius:10px;padding:1.8rem;box-shadow:var(--sh);margin-bottom:1.4rem}
+.pcard h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.1rem;padding-bottom:.65rem;border-bottom:1px solid rgba(28,20,16,.08)}
+.p-frow{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.p-fg{margin-bottom:.9rem}
+.p-fg label{display:block;font-size:.75rem;font-weight:700;margin-bottom:.35rem;color:var(--mu)}
+.p-fg input,.p-fg select{width:100%;padding:.65rem .85rem;border:1.5px solid rgba(28,20,16,.15);border-radius:var(--r);font-family:'Nunito',sans-serif;font-size:.875rem;background:var(--sd);color:var(--ink)}
+.p-fg input:focus,.p-fg select:focus{outline:none;border-color:var(--sf)}
+/* bookings table */
+.bh-tbl{width:100%;border-collapse:collapse;font-size:.82rem}
+.bh-tbl th{text-align:left;padding:.65rem .9rem;background:var(--sd);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--mu)}
+.bh-tbl td{padding:.72rem .9rem;border-bottom:1px solid rgba(28,20,16,.06)}
+.bh-tbl tr:last-child td{border-bottom:none}
+.bh-tbl tr:hover td{background:rgba(242,232,213,.35)}
+.sbadge{display:inline-block;padding:.2rem .65rem;border-radius:20px;font-size:.68rem;font-weight:700}
+.s-ok{background:rgba(61,107,79,.14);color:var(--jm)}
+.s-pend{background:rgba(232,132,10,.14);color:var(--sf)}
+.s-can{background:rgba(201,75,109,.14);color:var(--lo)}
+.s-done{background:rgba(27,122,140,.14);color:var(--oc)}
+/* promotions */
+.promo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.1rem}
+.promo-card{background:linear-gradient(135deg,var(--j),var(--jm));color:var(--sd);border-radius:10px;padding:1.4rem;position:relative;overflow:hidden}
+.promo-card::before{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.06)}
+.promo-pct{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:var(--sl);line-height:1;display:block}
+.promo-name{font-weight:700;font-size:.95rem;margin:.3rem 0 .25rem}
+.promo-desc{font-size:.78rem;opacity:.7;line-height:1.5}
+.promo-code-tag{display:inline-block;background:rgba(242,232,213,.15);border:1px solid rgba(242,232,213,.3);padding:.22rem .7rem;border-radius:3px;font-weight:800;letter-spacing:.1em;font-size:.78rem;margin-top:.75rem}
+.promo-valid{font-size:.7rem;opacity:.55;margin-top:.45rem}
+
+/* ═══════════════════════════
+   AGENT PROFILE
+═══════════════════════════ */
+.agent-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
+.a-stat{background:var(--wh);border-radius:10px;padding:1.3rem;box-shadow:var(--sh);text-align:center}
+.a-stat-val{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;display:block;color:var(--j)}
+.a-stat-lbl{font-size:.72rem;color:var(--mu);font-weight:600}
+.commission-banner{background:linear-gradient(135deg,var(--sf),#c06d08);color:#fff;border-radius:10px;padding:1.4rem 1.6rem;margin-bottom:1.4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.comm-pct{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;line-height:1}
+.comm-label{font-size:.85rem;opacity:.85;margin-top:.2rem}
+.comm-earned{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700}
+.comm-earned-lbl{font-size:.8rem;opacity:.8}
+
+/* ═══════════════════════════
+   ADMIN PORTAL
+═══════════════════════════ */
+.admin-login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--j);padding-top:66px}
+.admin-login-box{background:var(--wh);border-radius:14px;padding:2.5rem;width:100%;max-width:420px;box-shadow:0 24px 60px rgba(0,0,0,.3);animation:up .4s ease}
+.admin-login-box .admin-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;text-align:center;display:block;margin-bottom:1.5rem}
+.admin-login-box .admin-logo span{color:var(--sf)}
+.admin-login-box h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;text-align:center;margin-bottom:.4rem}
+.admin-login-box p{font-size:.82rem;color:var(--mu);text-align:center;margin-bottom:1.4rem}
+.admin-wrap{display:grid;grid-template-columns:230px 1fr;min-height:100vh;padding-top:66px}
+.admin-sidebar{background:var(--ink);padding:2.2rem 1.4rem;position:sticky;top:66px;height:calc(100vh - 66px);overflow-y:auto}
+.admin-sidebar .su-name{color:var(--sd)}
+.admin-sidebar .su-role{color:rgba(242,232,213,.45)}
+.admin-sidebar .sav{background:var(--sf)}
+.admin-sidebar .snav a{color:rgba(242,232,213,.5)}
+.admin-sidebar .snav a:hover,.admin-sidebar .snav a.on{background:rgba(242,232,213,.1);color:var(--sd)}
+.admin-content{padding:2.2rem 2.5rem;background:#F4F5F7;overflow-y:auto}
+.sect-title{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:700;margin-bottom:.3rem}
+.sect-sub{font-size:.85rem;color:#6B7280;margin-bottom:1.5rem}
+/* kpi */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-bottom:1.8rem}
+.kpi{background:#fff;border-radius:10px;padding:1.3rem 1.5rem;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.kpi-icon{font-size:1.7rem;margin-bottom:.6rem;display:block}
+.kpi-val{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;display:block;line-height:1}
+.kpi-lbl{font-size:.73rem;color:#6B7280;font-weight:600;margin-top:.28rem;display:block}
+.kpi-delta{font-size:.7rem;margin-top:.45rem}
+.kpi-delta.up{color:#16A34A}.kpi-delta.dn{color:#DC2626}
+/* charts */
+.charts-row{display:grid;grid-template-columns:2fr 1fr;gap:1.1rem;margin-bottom:1.8rem}
+.chart-card{background:#fff;border-radius:10px;padding:1.4rem;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.chart-title{font-weight:700;font-size:.92rem;margin-bottom:1.1rem;display:flex;justify-content:space-between;align-items:center}
+.chart-title span{font-size:.73rem;color:#6B7280;font-weight:500}
+.bar-chart{display:flex;align-items:flex-end;gap:.5rem;height:130px;padding-top:8px}
+.bw{flex:1;display:flex;flex-direction:column;align-items:center;gap:.35rem}
+.bar{width:100%;border-radius:4px 4px 0 0;transition:opacity .2s;cursor:pointer;min-width:14px}
+.bar:hover{opacity:.8}
+.b-lbl{font-size:.62rem;color:#9CA3AF;font-weight:600}
+.b-val{font-size:.62rem;color:#374151;font-weight:700}
+/* donut */
+.donut-wrap{display:flex;flex-direction:column;align-items:center;gap:.9rem}
+.donut-svg{width:120px;height:120px}
+.dleg-item{display:flex;align-items:center;justify-content:space-between;font-size:.76rem;padding:.22rem 0}
+.dleg-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.dleg-lbl{display:flex;align-items:center;gap:.45rem;color:#374151}
+.dleg-val{font-weight:700;color:#111}
+/* admin table */
+.atbl-wrap{background:#fff;border-radius:10px;padding:1.4rem;box-shadow:0 2px 10px rgba(0,0,0,.07);margin-bottom:1.4rem}
+.atbl-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem}
+.atbl-head h3{font-weight:700;font-size:.92rem}
+.atbl-head .acts{display:flex;gap:.55rem;align-items:center}
+.search-sm{padding:.42rem .8rem;border:1px solid #E5E7EB;border-radius:var(--r);font-size:.78rem;font-family:'Nunito',sans-serif;background:#F9FAFB;width:190px}
+.atbl{width:100%;border-collapse:collapse;font-size:.8rem}
+.atbl th{text-align:left;padding:.6rem .9rem;background:#F9FAFB;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#6B7280;border-bottom:1px solid #E5E7EB}
+.atbl td{padding:.7rem .9rem;border-bottom:1px solid #F3F4F6;color:#374151}
+.atbl tr:last-child td{border-bottom:none}
+.atbl tr:hover td{background:#FAFAFA}
+.tag-pill{display:inline-block;padding:.15rem .6rem;border-radius:20px;font-size:.67rem;font-weight:700}
+.pill-g{background:#D1FAE5;color:#065F46}.pill-b{background:#DBEAFE;color:#1E40AF}
+.pill-r{background:#FEE2E2;color:#991B1B}.pill-y{background:#FEF3C7;color:#92400E}
+.pill-p{background:#FCE7F3;color:#9D174D}
+/* tour mgmt */
+.tmgmt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.1rem}
+.tmgmt-card{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.tmgmt-img{height:140px;overflow:hidden;background:#F3F4F6}
+.tmgmt-img img{width:100%;height:100%;object-fit:cover;display:block}
+.tmgmt-body{padding:.9rem}
+.tmgmt-name{font-weight:700;font-size:.85rem;margin-bottom:.25rem}
+.tmgmt-meta{font-size:.73rem;color:#6B7280;margin-bottom:.7rem}
+.tmgmt-acts{display:flex;gap:.45rem}
+/* admin panel */
+.apanel{display:none;animation:up .3s ease}.apanel.on{display:block}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1050px){
+  .hero{grid-template-columns:1fr;padding-top:100px}.mosaic{display:none}
+  .how-grid{grid-template-columns:repeat(2,1fr)}.why-grid{grid-template-columns:repeat(2,1fr)}
+  .fg-grid{grid-template-columns:1fr 1fr}.kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .charts-row{grid-template-columns:1fr}.tdp-wrap{grid-template-columns:1fr}
+  .book-side{position:static}.bf-layout{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  nav .nav-links .hm{display:none}
+  .profile-wrap,.admin-wrap{grid-template-columns:1fr}
+  .sidebar,.admin-sidebar{display:none}
+  .profile-content,.admin-content{padding:1.5rem}
+  .agent-stats,.kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .hl-grid,.incl-grid,.fac-grid{grid-template-columns:1fr}
+  .bf-frow,.frow,.p-frow{grid-template-columns:1fr}
+  .fg-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ════ NAV ════ -->
+<nav>
+  <span class="logo" onclick="nav('home')">Travel<span>Booker</span> 🇱🇰</span>
+  <ul class="nav-links">
+    <li><a id="nl-home" class="active" onclick="nav('home')">Home</a></li>
+    <li><a id="nl-tours" onclick="nav('tours')">Tours</a></li>
+    <li class="hm"><a id="nl-promo" onclick="nav('home');setTimeout(()=>qs('#promo')?.scrollIntoView({behavior:'smooth'}),50)">Promotions</a></li>
+    <li><a onclick="openAdminLogin()">Admin Portal</a></li>
+    <li><a class="nav-btn2" onclick="openAuth('login')">Log In</a></li>
+    <li><a class="nav-btn" onclick="openAuth('signup')">Sign Up</a></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HOME PAGE
+═══════════════════════════════════════════ -->
+<div id="pg-home" class="pg on">
+
+<section class="hero">
+  <div class="hero-txt ani">
+    <span class="tag">🌴 Pearl of the Indian Ocean</span>
+    <h1>Explore the Wonders<br>of <em>Sri Lanka</em></h1>
+    <p>From misty tea highlands and ancient temples to pristine beaches and wild leopards — one teardrop island, a lifetime of adventure.</p>
+    <div class="hero-btns">
+      <button class="btn btn-p" onclick="nav('tours')">Browse Tours →</button>
+      <button class="btn btn-o" onclick="openAuth('signup')">Sign Up Free</button>
+    </div>
+    <div class="hero-stats">
+      <div><span class="stat-n">48+</span><span class="stat-l">Tour Packages</span></div>
+      <div><span class="stat-n">26</span><span class="stat-l">Destinations</span></div>
+      <div><span class="stat-n">99%</span><span class="stat-l">Satisfaction</span></div>
+    </div>
+  </div>
+  <div class="mosaic ani">
+    <div class="mc"><img src="https://images.unsplash.com/photo-1612862862126-865765df2ded?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2lnaXJpeWElMjByb2NrfGVufDB8fDB8fHww" alt=""/><span class="mc-lbl">Sigiriya Rock</span><span class="mc-pr">From $299</span></div>
+    <div class="mc"><img src="https://images.unsplash.com/photo-1578519050142-afb511e518de?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt=""/><span class="mc-lbl">Ella Tea Country</span></div>
+    <div class="mc"><img src="https://images.unsplash.com/photo-1580910527739-556eb89f9d65?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWlyaXNzYXxlbnwwfHwwfHx8MA%3D%3D" alt=""/><span class="mc-lbl">Mirissa Beach</span><span class="mc-pr">From $199</span></div>
+    <div class="mc"><img src="https://images.unsplash.com/photo-1533484482814-3fe2d922be89?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGlubmF3YWxhfGVufDB8fDB8fHww" alt=""/><span class="mc-lbl">Pinnawala Elephants</span></div>
+  </div>
+</section>
+
+
+<!-- WHY US -->
+<section class="why-sec">
+  <div class="sec-head" style="text-align:center;margin:0 auto 2.5rem">
+    <h2>Why Choose <em>TravelBooker?</em></h2>
+    <p style="margin:0 auto">Sri Lanka specialists since 2018 — we know every road, temple, and tide.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><span class="why-icon">🧭</span><h3>Expert Local Guides</h3><p>Certified Sri Lankan historians, naturalists, and trek leaders assigned to every tour.</p></div>
+    <div class="why-card"><span class="why-icon">💳</span><h3>Secure Online Booking</h3><p>256-bit SSL payment processing. Book in minutes, confirmation sent instantly.</p></div>
+    <div class="why-card"><span class="why-icon">🔄</span><h3>Free Cancellation</h3><p>Modify or cancel any booking up to 48 hours before your travel date — no fees.</p></div>
+    <div class="why-card"><span class="why-icon">🏆</span><h3>Best Price Guarantee</h3><p>Find the same tour cheaper elsewhere and we'll match it plus give you a 5% discount.</p></div>
+  </div>
+</section>
+
+<!-- FEATURED TOURS (home preview) -->
+<section style="padding:4.5rem 5vw;background:var(--cr)">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2rem">
+    <div class="sec-head" style="margin-bottom:0"><h2>Featured <em>Packages</em></h2><p>Our most loved Sri Lanka experiences.</p></div>
+    <button class="btn btn-o btn-sm" onclick="nav('tours')">View All Tours →</button>
+  </div>
+  <div class="t-grid" id="home-tour-grid"></div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-sec">
+  <div class="sec-head" style="text-align:center"><h2 style="color:var(--sd)">How It <em style="color:var(--sl)">Works</em></h2><p>Four steps from dreaming to departing.</p></div>
+  <div class="how-grid">
+    <div class="how-step"><span class="step-n">01</span><span class="step-ico">🔍</span><h3>Browse & Filter</h3><p>Search by destination, budget, category, or duration.</p></div>
+    <div class="how-step"><span class="step-n">02</span><span class="step-ico">📋</span><h3>Select Package</h3><p>View full details, itinerary, facilities, and reviews.</p></div>
+    <div class="how-step"><span class="step-n">03</span><span class="step-ico">💳</span><h3>Book Securely</h3><p>Enter your details and pay safely online. Instant confirmation.</p></div>
+    <div class="how-step"><span class="step-n">04</span><span class="step-ico">🌴</span><h3>Enjoy Sri Lanka</h3><p>Track your booking, modify if needed, and explore freely.</p></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <h2>Ready to Discover Sri Lanka?</h2>
+  <p>Create a free account and start exploring 48 curated packages across the Pearl of the Indian Ocean.</p>
+  <div class="cta-btns">
+    <button class="btn btn-w" onclick="openAuth('signup')">Create Free Account</button>
+    <button class="btn btn-o" style="border-color:rgba(255,255,255,.45);color:#fff" onclick="nav('tours')">Browse Tours</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fg-grid">
+    <div class="fb">
+      <span class="logo" style="color:var(--sd)">Travel<span>Booker</span> 🇱🇰</span>
+      <p>Your trusted partner for authentic Sri Lanka travel experiences.</p>
+    </div>
+    <div class="fc"><h4>Explore</h4><ul>
+      <li><a onclick="nav('tours')">All Tours</a></li><li><a onclick="nav('tours')">Cultural Heritage</a></li>
+      <li><a onclick="nav('tours')">Wildlife Safaris</a></li><li><a onclick="nav('tours')">Beach & Coast</a></li>
+      <li><a onclick="nav('tours')">Hill Country</a></li><li><a>Current Promotions</a></li>
+    </ul></div>
+    <div class="fc"><h4>Account</h4><ul>
+      <li><a onclick="openAuth('signup')">Create Account</a></li><li><a onclick="openAuth('login')">Log In</a></li>
+      <li><a onclick="openAuth('login')">My Bookings</a></li><li><a onclick="openAdminLogin()">Admin Portal</a></li>
+    </ul></div>
+    <div class="fc"><h4>Support</h4><ul>
+      <li><a>How It Works</a></li><li><a>Cancellation Policy</a></li>
+      <li><a>Refund Policy</a></li><li><a>Contact Us</a></li>
+    </ul></div>
+  </div>
+  <div class="fbot"><span>© 2026 TravelBooker Sri Lanka. All rights reserved.</span><span>Made with ♥ for explorers 🌴</span></div>
+</footer>
+
+</div><!-- /home -->
+
+<!-- ═══════════════════════════════════════════
+     TOURS PAGE
+═══════════════════════════════════════════ -->
+<div id="pg-tours" class="pg">
+<div class="tours-hero">
+  <h1>Sri Lanka Tour Packages</h1>
+  <p>48 handcrafted experiences across the Pearl of the Indian Ocean — from ancient kingdoms to wild jungles and pristine beaches.</p>
+</div>
+<div class="tours-search-bar">
+  <div class="sbar">
+    <input type="text" id="tour-search-inp" placeholder="Search destinations, tours (e.g. Sigiriya, Ella, Yala…)" oninput="filterAndRender()"/>
+    <select id="tour-cat-sel" onchange="filterAndRender()">
+      <option value="">All Categories</option>
+      <option value="cultural">Cultural Heritage</option>
+      <option value="wildlife">Wildlife Safari</option>
+      <option value="beach">Beach & Coast</option>
+      <option value="hills">Hill Country</option>
+      <option value="adventure">Adventure</option>
+      <option value="pilgrimage">Pilgrimage</option>
+    </select>
+    <select id="tour-dur-sel" onchange="filterAndRender()">
+      <option value="">Any Duration</option>
+      <option value="short">1–3 Days</option>
+      <option value="medium">4–7 Days</option>
+      <option value="long">8–14 Days</option>
+      <option value="grand">15+ Days</option>
+    </select>
+    <button onclick="filterAndRender()">Search</button>
+  </div>
+  <div class="chips">
+    <span class="chip on" onclick="setChip(this,'')">All</span>
+    <span class="chip" onclick="setChip(this,'deal')">🔥 Deals</span>
+    <span class="chip" onclick="setChip(this,'cultural')">🏛 Cultural</span>
+    <span class="chip" onclick="setChip(this,'wildlife')">🐘 Wildlife</span>
+    <span class="chip" onclick="setChip(this,'beach')">🌊 Beach</span>
+    <span class="chip" onclick="setChip(this,'hills')">🍃 Hill Country</span>
+    <span class="chip" onclick="setChip(this,'adventure')">🧗 Adventure</span>
+    <span class="chip" onclick="setChip(this,'pilgrimage')">🕌 Pilgrimage</span>
+    <span class="chip" onclick="setChip(this,'budget')">💰 Under $250</span>
+  </div>
+</div>
+<div class="tours-grid-wrap">
+  <div class="filter-sidebar-row">
+    <div class="filter-panel">
+      <h3>Filters</h3>
+      <div class="filter-group">
+        <label>Price Range</label>
+        <input type="range" class="filter-range" id="price-range" min="100" max="1000" value="1000" oninput="document.getElementById('pr-val').textContent='$'+this.value;filterAndRender()"/>
+        <div class="range-labels"><span>$100</span><span id="pr-val">$1000</span></div>
+      </div>
+      <div class="filter-group">
+        <label>Category</label>
+        <div class="filter-opt"><input type="checkbox" value="cultural" onchange="filterAndRender()"/><span>Cultural Heritage</span></div>
+        <div class="filter-opt"><input type="checkbox" value="wildlife" onchange="filterAndRender()"/><span>Wildlife Safari</span></div>
+        <div class="filter-opt"><input type="checkbox" value="beach" onchange="filterAndRender()"/><span>Beach & Coast</span></div>
+        <div class="filter-opt"><input type="checkbox" value="hills" onchange="filterAndRender()"/><span>Hill Country</span></div>
+        <div class="filter-opt"><input type="checkbox" value="adventure" onchange="filterAndRender()"/><span>Adventure</span></div>
+        <div class="filter-opt"><input type="checkbox" value="pilgrimage" onchange="filterAndRender()"/><span>Pilgrimage</span></div>
+      </div>
+      <div class="filter-group">
+        <label>Rating</label>
+        <div class="filter-opt"><input type="checkbox" value="5" onchange="filterAndRender()"/><span>★★★★★ (5.0)</span></div>
+        <div class="filter-opt"><input type="checkbox" value="4" onchange="filterAndRender()"/><span>★★★★☆ (4+)</span></div>
+      </div>
+      <button class="btn btn-o btn-sm btn-full" onclick="resetFilters()">Reset Filters</button>
+    </div>
+    <div class="tours-main">
+      <div class="tours-top-row">
+        <span class="tours-count" id="tour-count">Showing 9 tours</span>
+        <select class="sort-select" id="sort-sel" onchange="filterAndRender()">
+          <option value="">Sort: Recommended</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Top Rated</option>
+        </select>
+      </div>
+      <div class="t-grid" id="tours-grid"></div>
+    </div>
+  </div>
+</div>
+</div><!-- /tours -->
+
+<!-- ═══════════════════════════════════════════
+     TOUR DETAIL PAGE
+═══════════════════════════════════════════ -->
+<div id="pg-detail" class="pg">
+<div class="tdp-hero">
+  <img id="tdp-img" src="" alt=""/>
+  <div class="tdp-hero-ov">
+    <div class="tdp-hero-cnt">
+      <div class="tdp-crumb">
+        <span onclick="nav('home')">Home</span> ›
+        <span onclick="nav('tours')">Tours</span> ›
+        <span id="tdp-crumb-nm"></span>
+      </div>
+      <div class="tdp-badges" id="tdp-badges"></div>
+      <h1 id="tdp-title"></h1>
+      <div class="tdp-hero-meta">
+        <span id="tdp-dest"></span>
+        <span id="tdp-dur"></span>
+        <span id="tdp-grp"></span>
+        <span id="tdp-rat-meta"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tdp-wrap">
+  <div class="tdp-main">
+    
+    
+    <!-- tabs -->
+    <div class="tdp-tabs">
+      <button class="tdp-tab on" onclick="tdpTab('about',this)">About</button>
+      <button class="tdp-tab" onclick="tdpTab('facilities',this)">Facilities</button>
+      <button class="tdp-tab" onclick="tdpTab('reviews',this)">Reviews</button>
+    </div>
+
+    <!-- ABOUT -->
+    <div id="tc-about" class="tdp-tc on">
+      <div class="about-txt">
+        <p id="tdp-d1"></p>
+        <p id="tdp-d2"></p>
+      </div>
+
+      <div class="hl-grid" id="tdp-hls"></div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;margin:1.5rem 0 .5rem">What's Included</h3>
+      <div class="incl-grid">
+        <div class="incl-col yes"><h4>✓ Included</h4><ul class="incl-list yes" id="tdp-inc"></ul></div>
+        <div class="incl-col no"><h4>✗ Not Included</h4><ul class="incl-list no" id="tdp-exc"></ul></div>
+      </div>
+    </div>
+    
+    <!-- FACILITIES -->
+    <div id="tc-facilities" class="tdp-tc">
+      <p id="tdp-fac-intro" style="font-size:.88rem;color:var(--mu);margin-bottom:1.2rem;line-height:1.7"></p>
+      <div class="fac-grid" id="tdp-facs"></div>
+    </div>
+    <!-- REVIEWS -->
+    <div id="tc-reviews" class="tdp-tc">
+      <div class="rev-sum">
+        <div style="text-align:center">
+          <div class="big-r" id="tdp-bigr">4.9</div>
+          <div style="color:var(--sf);font-size:1rem;margin:.25rem 0">★★★★★</div>
+          <div style="font-size:.72rem;color:var(--mu)" id="tdp-rev-cnt">0 reviews</div>
+        </div>
+        <div style="flex:1">
+          <div class="rbar-row"><span style="width:18px;text-align:right">5</span><div class="rbar-tr"><div class="rbar-fl" style="width:80%"></div></div><span>80%</span></div>
+          <div class="rbar-row"><span style="width:18px;text-align:right">4</span><div class="rbar-tr"><div class="rbar-fl" style="width:14%;background:var(--jl)"></div></div><span>14%</span></div>
+          <div class="rbar-row"><span style="width:18px;text-align:right">3</span><div class="rbar-tr"><div class="rbar-fl" style="width:5%;background:#CBD5E1"></div></div><span>5%</span></div>
+          <div class="rbar-row"><span style="width:18px;text-align:right">2</span><div class="rbar-tr"><div class="rbar-fl" style="width:1%;background:#CBD5E1"></div></div><span>1%</span></div>
+          <div class="rbar-row"><span style="width:18px;text-align:right">1</span><div class="rbar-tr"><div class="rbar-fl" style="width:0%"></div></div><span>0%</span></div>
+        </div>
+      </div>
+      <div class="rev-cards" id="tdp-revs"></div>
+    </div>
+  </div><!-- /tdp-main -->
+
+  <!-- BOOKING SIDEBAR -->
+  <div class="book-side">
+    <div class="bs-price" id="bs-price">$429</div>
+    <div class="bs-per">per person</div>
+    <div class="bs-rat"><span style="color:var(--sf)">★★★★★</span><span id="bs-rat-txt">4.9 (218 reviews)</span></div>
+    <div class="bs-div"></div>
+    <div class="bs-lbl">Travel Date</div>
+    <input type="date" class="bs-input" id="bs-date"/>
+    <div class="bs-row">
+      <div><div class="bs-lbl">Travellers</div><select class="bs-input" id="bs-pax" onchange="calcBS()" style="margin-bottom:0"><option value="1">1 Person</option><option value="2" selected>2 People</option><option value="3">3 People</option><option value="4">4 People</option><option value="5">5+</option></select></div>
+      <div><div class="bs-lbl">Room</div><select class="bs-input" style="margin-bottom:0"><option>Standard</option><option>Deluxe</option><option>Suite</option></select></div>
+    </div>
+    <div class="bs-sum">
+      <div class="bs-line"><span id="bs-sum-name">Tour × 2</span><span id="bs-sum-sub">$858</span></div>
+      <div class="bs-line"><span>Service Fee</span><span>$29</span></div>
+      <div class="bs-tot"><span>Total</span><span id="bs-sum-tot">$887</span></div>
+    </div>
+    <button class="btn btn-p btn-full" style="font-size:.95rem;padding:.9rem" onclick="goBooking()">Book Now →</button>
+    <div class="bs-note">No payment now — confirm on next step</div>
+    <div class="bs-guarantee">🔒 Secure &nbsp;·&nbsp; Free cancel 48h</div>
+  </div>
+</div><!-- /tdp-wrap -->
+</div><!-- /detail -->
+
+<!-- ═══════════════════════════════════════════
+     BOOKING FORM PAGE
+═══════════════════════════════════════════ -->
+<div id="pg-booking" class="pg">
+<div class="bf-wrap">
+  <div class="bf-topbar">
+    <button class="btn btn-o btn-sm" onclick="nav('detail')">← Back to Tour</button>
+    <span style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700" id="bf-tour-nm"></span>
+  </div>
+  <div class="bf-steps">
+    <div class="steps-row">
+      <div class="step-itm"><div class="step-num sn-cur" id="ps1">1</div><div class="step-lbl">Your Details</div></div>
+      <div class="step-itm"><div class="step-num sn-todo" id="ps2">2</div><div class="step-lbl">Payment</div></div>
+      <div class="step-itm"><div class="step-num sn-todo" id="ps3">3</div><div class="step-lbl">Confirmation</div></div>
+    </div>
+  </div>
+  <div id="bf-form-wrap">
+    <div class="bf-layout">
+      <div>
+        <div class="bf-card">
+          <h3>👤 Personal Details</h3>
+          <div class="bf-frow"><div class="bf-fg"><label>First Name *</label><input placeholder="Priya"/></div><div class="bf-fg"><label>Last Name *</label><input placeholder="Mendis"/></div></div>
+          <div class="bf-frow"><div class="bf-fg"><label>Email *</label><input type="email" placeholder="priya@email.com"/></div><div class="bf-fg"><label>Phone *</label><input placeholder="+94 77 123 4567"/></div></div>
+          <div class="bf-frow"><div class="bf-fg"><label>Nationality</label><select><option>Sri Lankan</option><option>British</option><option>American</option><option>Indian</option><option>Australian</option><option>Other</option></select></div><div class="bf-fg"><label>Passport / NIC</label><input placeholder="N12345678"/></div></div>
+        </div>
+        <div class="bf-card">
+          <h3>🌴 Travel Details</h3>
+          <div class="bf-frow"><div class="bf-fg"><label>Travel Date *</label><input type="date" id="bf-date"/></div><div class="bf-fg"><label>Travellers *</label><select id="bf-pax" onchange="calcBF()"><option value="1">1 Person</option><option value="2" selected>2 People</option><option value="3">3 People</option><option value="4">4 People</option><option value="5">5 People</option></select></div></div>
+          <div class="bf-frow"><div class="bf-fg"><label>Room Type</label><select><option>Standard</option><option>Deluxe</option><option>Suite</option></select></div><div class="bf-fg"><label>Meal Preference</label><select><option>No preference</option><option>Vegetarian</option><option>Vegan</option><option>Halal</option></select></div></div>
+          <div class="bf-fg"><label>Special Requests</label><textarea placeholder="Dietary needs, disabilities, special occasions…"></textarea></div>
+        </div>
+        <div class="bf-card">
+          <h3>💳 Payment Method</h3>
+          <div class="pm-opts">
+            <div class="pm-opt on" onclick="selPm(this)"><span class="pm-icon">💳</span>Credit Card</div>
+            <div class="pm-opt" onclick="selPm(this)"><span class="pm-icon">🏦</span>Bank Transfer</div>
+            <div class="pm-opt" onclick="selPm(this)"><span class="pm-icon">📱</span>Online Wallet</div>
+          </div>
+          <div class="bf-frow"><div class="bf-fg"><label>Card Number</label><input placeholder="1234 5678 9012 3456" maxlength="19"/></div><div class="bf-fg"><label>Name on Card</label><input placeholder="PRIYA MENDIS"/></div></div>
+          <div class="bf-frow"><div class="bf-fg"><label>Expiry</label><input placeholder="MM / YY" maxlength="7"/></div><div class="bf-fg"><label>CVV</label><input placeholder="•••" type="password" maxlength="4"/></div></div>
+          <div style="font-size:.75rem;color:var(--mu);margin-top:.4rem">🔒 Secured with 256-bit SSL encryption</div>
+        </div>
+        <button class="btn btn-p" style="width:100%;justify-content:center;font-size:.95rem;padding:1rem" onclick="confirmBooking()">Confirm & Complete Booking →</button>
+        <p style="font-size:.72rem;color:var(--mu);text-align:center;margin-top:.6rem">By confirming you agree to our Terms & Conditions</p>
+      </div>
+      <!-- summary -->
+      <div>
+        <div class="book-side" style="position:sticky;top:160px">
+          <div style="display:flex;gap:.9rem;align-items:center;margin-bottom:1.1rem;padding-bottom:1.1rem;border-bottom:1px solid rgba(28,20,16,.08)">
+            <img id="bf-thumb" src="" alt="" style="width:68px;height:58px;object-fit:cover;border-radius:6px;flex-shrink:0"/>
+            <div><div style="font-weight:700;font-size:.85rem;line-height:1.3" id="bf-nm2"></div><div style="font-size:.72rem;color:var(--mu);margin-top:.18rem" id="bf-dest2"></div></div>
+          </div>
+          <div style="font-size:.78rem;color:var(--mu);margin-bottom:.25rem">📅 Date: <strong id="bf-date-show">—</strong></div>
+          <div style="font-size:.78rem;color:var(--mu);margin-bottom:1rem">👥 Travellers: <strong id="bf-pax-show">2 People</strong></div>
+          <div class="bs-sum">
+            <div class="bs-line"><span id="bf-ln1">Tour × 2</span><span id="bf-sub">$858</span></div>
+            <div class="bs-line"><span>Service Fee</span><span>$29</span></div>
+            <div class="bs-line"><span>Tax (15%)</span><span id="bf-tax">$129</span></div>
+            <div class="bs-tot"><span>Total</span><span id="bf-tot">$1,016</span></div>
+          </div>
+          <div style="font-size:.72rem;color:var(--jm);line-height:1.6;margin-top:.65rem;background:rgba(26,48,37,.06);padding:.7rem;border-radius:var(--r)">
+            ✅ Free cancellation up to 48h before tour<br>
+            📧 Instant confirmation email<br>
+            🇱🇰 Local guide assigned after booking
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- CONFIRMATION -->
+  <div id="bf-confirm" style="display:none">
+    <div class="confirm-screen">
+      <div class="big-emoji">🎉</div>
+      <h2>Booking Confirmed!</h2>
+      <p>Your Sri Lanka adventure is booked. A confirmation email has been sent. Your local guide will be in touch 24 hours before the tour.</p>
+      <div class="confirm-box">
+        <div style="font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:.85rem">Booking Summary</div>
+        <div class="line">📋 Booking ID: <strong style="color:var(--sf)">#SL-3042</strong></div>
+        <div class="line" id="bc-nm">🌴 Tour: <strong>—</strong></div>
+        <div class="line">📅 Date: <strong id="bc-date">—</strong></div>
+        <div class="line">👥 Travellers: <strong id="bc-pax">—</strong></div>
+        <div class="line">💰 Total: <strong id="bc-tot">—</strong></div>
+        <div class="line">📧 Confirmation: <strong>sent to your email</strong></div>
+      </div>
+      <div style="display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-p" onclick="nav('profile')">View My Bookings</button>
+        <button class="btn btn-o" onclick="nav('home')">Back to Home</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div><!-- /booking -->
+
+<!-- ═══════════════════════════════════════════
+     NORMAL USER PROFILE
+═══════════════════════════════════════════ -->
+<div id="pg-profile" class="pg">
+<div class="profile-wrap">
+  <div class="sidebar">
+    <div class="sidebar-user">
+      <div class="sav">👤</div>
+      <div><div class="su-name">Priya Mendis</div><div class="su-role">Direct Client</div></div>
+    </div>
+    <ul class="snav">
+      <li><a class="on" onclick="showPanel('bookings',this)"><span>📋</span> My Bookings</a></li>
+      <li><a onclick="showPanel('promos',this)"><span>🏷️</span> Promotions</a></li>
+      <li><a onclick="showPanel('profile-edit',this)"><span>👤</span> My Profile</a></li>
+      <li><a onclick="showPanel('security',this)"><span>🔒</span> Security</a></li>
+      <div class="divider"></div>
+      <li><a onclick="nav('home')"><span>🏠</span> Back to Home</a></li>
+      <li><a onclick="nav('home')"><span>🚪</span> Log Out</a></li>
+    </ul>
+  </div>
+  <div class="profile-content">
+    <!-- BOOKINGS -->
+    <div id="panel-bookings" class="panel on">
+      <div class="ph"><h1>My Bookings</h1><p>Manage all your Sri Lanka tour reservations.</p></div>
+      <div class="pcard">
+        <h3>Booking History</h3>
+        <table class="bh-tbl">
+          <thead><tr><th>Booking ID</th><th>Tour</th><th>Date</th><th>Pax</th><th>Total</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td><strong>#SL-2840</strong></td><td>Ancient Kingdoms Tour</td><td>15 Apr 2026</td><td>2</td><td>$858</td><td><span class="sbadge s-ok">Confirmed</span></td><td><button class="btn btn-o btn-sm">Modify</button></td></tr>
+            <tr><td><strong>#SL-2791</strong></td><td>Yala Wildlife Safari</td><td>28 Mar 2026</td><td>4</td><td>$996</td><td><span class="sbadge s-done">Completed</span></td><td><button class="btn btn-sf btn-sm">Rebook</button></td></tr>
+            <tr><td><strong>#SL-2654</strong></td><td>Hill Country Tea Trail</td><td>10 Feb 2026</td><td>2</td><td>$598</td><td><span class="sbadge s-done">Completed</span></td><td><button class="btn btn-sf btn-sm">Rebook</button></td></tr>
+            <tr><td><strong>#SL-3020</strong></td><td>South Coast & Whales</td><td>20 Jun 2026</td><td>2</td><td>$638</td><td><span class="sbadge s-pend">Pending</span></td><td><button class="btn btn-o btn-sm">Cancel</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- PROMOTIONS -->
+    <div id="panel-promos" class="panel">
+      <div class="ph"><h1>Promotions</h1><p>Exclusive deals available for your next booking.</p></div>
+      <div class="promo-grid">
+        <div class="promo-card"><span class="promo-pct">25%</span><div class="promo-name">Yala Season Special</div><div class="promo-desc">25% off all wildlife safari packages this month. Valid for bookings in April 2026.</div><div class="promo-code-tag">YALA25</div><div class="promo-valid">Valid until: 30 Apr 2026</div></div>
+        <div class="promo-card" style="background:linear-gradient(135deg,var(--oc),#155f6e)"><span class="promo-pct">10%</span><div class="promo-name">Ella Hill Country Deal</div><div class="promo-desc">10% off all Hill Country and Tea Country tours. Limited availability.</div><div class="promo-code-tag">ELLA10</div><div class="promo-valid">Valid until: 15 May 2026</div></div>
+        <div class="promo-card" style="background:linear-gradient(135deg,#8B3A0F,#6d2d0b)"><span class="promo-pct">15%</span><div class="promo-name">Heritage Explorer</div><div class="promo-desc">15% off on Cultural Triangle tours including Sigiriya, Dambulla, and Polonnaruwa.</div><div class="promo-code-tag">HERITAGE15</div><div class="promo-valid">Valid until: 30 Jun 2026</div></div>
+        <div class="promo-card" style="background:linear-gradient(135deg,var(--lo),#a0365a)"><span class="promo-pct">20%</span><div class="promo-name">Loyalty Reward</div><div class="promo-desc">Special 20% discount for returning customers. Thank you for choosing TravelBooker!</div><div class="promo-code-tag">LOYAL20</div><div class="promo-valid">Valid until: 31 Dec 2026</div></div>
+      </div>
+    </div>
+    <!-- PROFILE EDIT -->
+    <div id="panel-profile-edit" class="panel">
+      <div class="ph"><h1>My Profile</h1><p>Keep your personal information up to date.</p></div>
+      <div class="pcard">
+        <h3>Personal Details</h3>
+        <div style="display:flex;align-items:center;gap:1.2rem;margin-bottom:1.4rem">
+          <div style="width:72px;height:72px;border-radius:50%;background:var(--sf);display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0">👤</div>
+          <div><button class="btn btn-o btn-sm">Change Photo</button><p style="font-size:.75rem;color:var(--mu);margin-top:.3rem">JPG or PNG, max 2MB</p></div>
+        </div>
+        <div class="p-frow"><div class="p-fg"><label>First Name</label><input value="Priya"/></div><div class="p-fg"><label>Last Name</label><input value="Mendis"/></div></div>
+        <div class="p-fg"><label>Email Address</label><input value="priya@email.com"/></div>
+        <div class="p-frow"><div class="p-fg"><label>Phone</label><input value="+94 77 123 4567"/></div><div class="p-fg"><label>Nationality</label><select><option>Sri Lankan</option><option>Other</option></select></div></div>
+        <button class="btn btn-p btn-sm" style="margin-top:.3rem">Save Changes</button>
+      </div>
+    </div>
+    <!-- SECURITY -->
+    <div id="panel-security" class="panel">
+      <div class="ph"><h1>Security</h1><p>Manage your password and account security.</p></div>
+      <div class="pcard" style="max-width:420px">
+        <h3>Change Password</h3>
+        <div class="p-fg"><label>Current Password</label><input type="password" placeholder="••••••••"/></div>
+        <div class="p-fg"><label>New Password</label><input type="password" placeholder="Min 8 characters"/></div>
+        <div class="p-fg"><label>Confirm New Password</label><input type="password" placeholder="Repeat new password"/></div>
+        <button class="btn btn-p btn-sm">Update Password</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div><!-- /profile -->
+
+<!-- ═══════════════════════════════════════════
+     TRAVEL AGENT PROFILE
+═══════════════════════════════════════════ -->
+<div id="pg-agent" class="pg">
+<div class="profile-wrap">
+  <div class="sidebar">
+    <div class="sidebar-user">
+      <div class="sav">🤝</div>
+      <div><div class="su-name">David Wickramasinghe</div><div class="su-role">Travel Agent</div></div>
+    </div>
+    <ul class="snav">
+      <li><a class="on" onclick="showAgentPanel('dashboard',this)"><span>📊</span> Dashboard</a></li>
+      <li><a onclick="showAgentPanel('bookings',this)"><span>📋</span> My Bookings</a></li>
+      <li><a onclick="showAgentPanel('commission',this)"><span>💰</span> Commission</a></li>
+      <li><a onclick="showAgentPanel('clients',this)"><span>👥</span> My Clients</a></li>
+      <li><a onclick="showAgentPanel('agent-profile',this)"><span>👤</span> My Profile</a></li>
+      <div class="divider"></div>
+      <li><a onclick="nav('home')"><span>🏠</span> Back to Home</a></li>
+      <li><a onclick="nav('home')"><span>🚪</span> Log Out</a></li>
+    </ul>
+  </div>
+  <div class="profile-content">
+    <!-- AGENT DASHBOARD -->
+    <div id="apanel-dashboard" class="panel on">
+      <div class="ph"><h1>Agent Dashboard</h1><p>Welcome back, David. Here's your performance overview.</p></div>
+      <div class="commission-banner">
+        <div><div class="comm-pct">12%</div><div class="comm-label">Your Commission Rate</div></div>
+        <div><div class="comm-earned">$1,842</div><div class="comm-earned-lbl">Commission Earned (Apr 2026)</div></div>
+        <div><div class="comm-earned">$14,280</div><div class="comm-earned-lbl">Total Commission (YTD)</div></div>
+      </div>
+      <div class="agent-stats">
+        <div class="a-stat"><span class="a-stat-val">82</span><span class="a-stat-lbl">Total Bookings</span></div>
+        <div class="a-stat"><span class="a-stat-val">$15,340</span><span class="a-stat-lbl">Bookings Value</span></div>
+        <div class="a-stat"><span class="a-stat-val">34</span><span class="a-stat-lbl">Active Clients</span></div>
+        <div class="a-stat"><span class="a-stat-val">Gold</span><span class="a-stat-lbl">Agent Tier</span></div>
+      </div>
+      <div class="pcard">
+        <h3>Recent Bookings</h3>
+        <table class="bh-tbl">
+          <thead><tr><th>ID</th><th>Client</th><th>Tour</th><th>Date</th><th>Value</th><th>Commission</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>#SL-3041</td><td>Ashan Fernando</td><td>Yala Safari</td><td>12 Apr</td><td>$498</td><td style="color:var(--jm);font-weight:700">$59.76</td><td><span class="sbadge s-ok">Confirmed</span></td></tr>
+            <tr><td>#SL-3040</td><td>Tina Cooray</td><td>Hill Country Trail</td><td>18 Apr</td><td>$598</td><td style="color:var(--jm);font-weight:700">$71.76</td><td><span class="sbadge s-pend">Pending</span></td></tr>
+            <tr><td>#SL-3039</td><td>Michael Lee</td><td>Grand Tour</td><td>22 Apr</td><td>$1,798</td><td style="color:var(--jm);font-weight:700">$215.76</td><td><span class="sbadge s-ok">Confirmed</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- AGENT BOOKINGS -->
+    <div id="apanel-bookings" class="panel">
+      <div class="ph"><h1>My Bookings</h1><p>All bookings made on behalf of your clients.</p></div>
+      <div class="pcard">
+        <h3>All Bookings</h3>
+        <table class="bh-tbl">
+          <thead><tr><th>ID</th><th>Client</th><th>Tour</th><th>Date</th><th>Pax</th><th>Total</th><th>Comm.</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>#SL-3041</td><td>Ashan Fernando</td><td>Yala Safari</td><td>12 Apr 2026</td><td>2</td><td>$498</td><td style="color:var(--jm);font-weight:700">$59</td><td><span class="sbadge s-ok">Confirmed</span></td></tr>
+            <tr><td>#SL-3040</td><td>Tina Cooray</td><td>Hill Country Trail</td><td>18 Apr 2026</td><td>2</td><td>$598</td><td style="color:var(--jm);font-weight:700">$71</td><td><span class="sbadge s-pend">Pending</span></td></tr>
+            <tr><td>#SL-3039</td><td>Michael Lee</td><td>Grand Tour</td><td>22 Apr 2026</td><td>2</td><td>$1,798</td><td style="color:var(--jm);font-weight:700">$215</td><td><span class="sbadge s-ok">Confirmed</span></td></tr>
+            <tr><td>#SL-2998</td><td>Ruwanthi Silva</td><td>Cultural Triangle</td><td>15 Mar 2026</td><td>2</td><td>$858</td><td style="color:var(--jm);font-weight:700">$102</td><td><span class="sbadge s-done">Completed</span></td></tr>
+            <tr><td>#SL-2960</td><td>James O'Brien</td><td>Galle Beach</td><td>01 Mar 2026</td><td>2</td><td>$398</td><td style="color:var(--lo);font-weight:700">$0</td><td><span class="sbadge s-can">Cancelled</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- COMMISSION -->
+    <div id="apanel-commission" class="panel">
+      <div class="ph"><h1>Commission Details</h1><p>Track your earnings and commission history.</p></div>
+      <div class="commission-banner">
+        <div><div class="comm-pct">12%</div><div class="comm-label">Current Commission Rate (Gold Tier)</div></div>
+        <div><div class="comm-earned">$14,280</div><div class="comm-earned-lbl">Total Commission Earned (2026 YTD)</div></div>
+      </div>
+      <div class="pcard">
+        <h3>Commission Breakdown</h3>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.4rem">
+          <div style="background:var(--sd);border-radius:8px;padding:1.1rem;text-align:center"><div style="font-size:1.5rem;font-weight:700;color:var(--j);font-family:'Cormorant Garamond',serif">$1,842</div><div style="font-size:.75rem;color:var(--mu)">April 2026</div></div>
+          <div style="background:var(--sd);border-radius:8px;padding:1.1rem;text-align:center"><div style="font-size:1.5rem;font-weight:700;color:var(--j);font-family:'Cormorant Garamond',serif">$3,960</div><div style="font-size:.75rem;color:var(--mu)">Q1 2026</div></div>
+          <div style="background:var(--sd);border-radius:8px;padding:1.1rem;text-align:center"><div style="font-size:1.5rem;font-weight:700;color:var(--j);font-family:'Cormorant Garamond',serif">82</div><div style="font-size:.75rem;color:var(--mu)">Total Bookings</div></div>
+        </div>
+        <div style="background:rgba(27,122,140,.08);border-radius:var(--r);padding:1rem;font-size:.83rem;color:var(--oc);line-height:1.65">
+          <strong>🥇 Gold Tier Benefits:</strong><br>
+          12% commission on all bookings · Priority support · Early access to new packages · Dedicated account manager
+        </div>
+        <div style="margin-top:1rem;font-size:.8rem;color:var(--mu)">Next tier (Platinum): 95 bookings / 13 remaining to upgrade</div>
+      </div>
+    </div>
+    <!-- AGENT CLIENTS -->
+    <div id="apanel-clients" class="panel">
+      <div class="ph"><h1>My Clients</h1><p>Manage your client relationships and booking history.</p></div>
+      <div class="pcard">
+        <h3>Client List</h3>
+        <table class="bh-tbl">
+          <thead><tr><th>Client Name</th><th>Email</th><th>Bookings</th><th>Total Spent</th><th>Last Booking</th></tr></thead>
+          <tbody>
+            <tr><td>Ashan Fernando</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="84e5f7ece5eac4e1e9e5ede8aae7ebe9">[email&#160;protected]</a></td><td>3</td><td>$1,494</td><td>12 Apr 2026</td></tr>
+            <tr><td>Tina Cooray</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="53273a3d3213363e323a3f7d303c3e">[email&#160;protected]</a></td><td>1</td><td>$598</td><td>18 Apr 2026</td></tr>
+            <tr><td>Michael Lee</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="86ebeae3e3c6e3ebe7efeaa8e5e9eb">[email&#160;protected]</a></td><td>4</td><td>$5,190</td><td>22 Apr 2026</td></tr>
+            <tr><td>Ruwanthi Silva</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="63111614020d23060e020a0f4d000c0e">[email&#160;protected]</a></td><td>2</td><td>$1,716</td><td>15 Mar 2026</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- AGENT PROFILE EDIT -->
+    <div id="apanel-agent-profile" class="panel">
+      <div class="ph"><h1>My Profile</h1><p>Update your agent account details.</p></div>
+      <div class="pcard" style="max-width:500px">
+        <h3>Agent Details</h3>
+        <div class="p-frow"><div class="p-fg"><label>First Name</label><input value="David"/></div><div class="p-fg"><label>Last Name</label><input value="Wickramasinghe"/></div></div>
+        <div class="p-fg"><label>Email</label><input value="david@lankatours.lk"/></div>
+        <div class="p-frow"><div class="p-fg"><label>Phone</label><input value="+94 11 234 5678"/></div><div class="p-fg"><label>Agency Name</label><input value="Lanka Tours Ltd"/></div></div>
+        <div class="p-fg"><label>Agent License #</label><input value="SL-AG-2024-0182"/></div>
+        <button class="btn btn-p btn-sm" style="margin-top:.3rem">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div><!-- /agent -->
+
+<!-- ═══════════════════════════════════════════
+     ADMIN LOGIN
+═══════════════════════════════════════════ -->
+<div id="pg-admin-login" class="pg">
+<div class="admin-login-wrap">
+  <div class="admin-login-box">
+    <span class="admin-logo">Travel<span>Booker</span> 🇱🇰 Admin</span>
+    <h2>Admin Portal</h2>
+    <p>Enter your administrator credentials to continue</p>
+    <div class="fg"><label>Admin Email</label><input type="email" id="al-email" placeholder="admin@travelbooker.lk" value="admin@travelbooker.lk"/></div>
+    <div class="fg"><label>Password</label><input type="password" id="al-pw" placeholder="••••••••" value="admin123"/></div>
+    <div style="background:rgba(232,132,10,.1);border-radius:var(--r);padding:.7rem .9rem;font-size:.78rem;color:var(--sf);margin-bottom:1rem">Demo credentials pre-filled — click Login to enter.</div>
+    <button class="btn btn-p btn-full" onclick="doAdminLogin()">Login to Admin Portal →</button>
+    <div class="m-note" style="margin-top:.9rem"><a onclick="nav('home')">← Back to main site</a></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     ADMIN DASHBOARD
+═══════════════════════════════════════════ -->
+<div id="pg-admin" class="pg">
+<div class="admin-wrap">
+  <div class="admin-sidebar">
+    <div class="sidebar-user">
+      <div class="sav">👑</div>
+      <div><div class="su-name">Administrator</div><div class="su-role">Super Admin</div></div>
+    </div>
+    <ul class="snav">
+      <li><a class="on" onclick="showAdmin('overview',this)"><span>📊</span> Overview</a></li>
+      <li><a onclick="showAdmin('reports',this)"><span>📈</span> View Reports</a></li>
+      <li><a onclick="showAdmin('tours',this)"><span>🗺️</span> Manage Tours</a></li>
+      <li><a onclick="showAdmin('users',this)"><span>👥</span> Manage Users</a></li>
+      <div class="divider"></div>
+      <li><a onclick="nav('home')"><span>🏠</span> View Site</a></li>
+      <li><a onclick="nav('home')"><span>🚪</span> Log Out</a></li>
+    </ul>
+  </div>
+  <div class="admin-content">
+
+    <!-- OVERVIEW -->
+    <div id="admin-overview" class="apanel on">
+      <div class="sect-title">Dashboard Overview</div>
+      <div class="sect-sub">Welcome back, Admin. Here's what's happening today.</div>
+      <div class="kpi-grid">
+        <div class="kpi"><span class="kpi-icon">🎫</span><span class="kpi-val">1,284</span><span class="kpi-lbl">Total Bookings</span><div class="kpi-delta up">↑ 12% vs last month</div></div>
+        <div class="kpi"><span class="kpi-icon">💵</span><span class="kpi-val">$84,920</span><span class="kpi-lbl">Total Revenue</span><div class="kpi-delta up">↑ 18% vs last month</div></div>
+        <div class="kpi"><span class="kpi-icon">👥</span><span class="kpi-val">3,471</span><span class="kpi-lbl">Registered Users</span><div class="kpi-delta up">↑ 8% this month</div></div>
+        <div class="kpi"><span class="kpi-icon">🌴</span><span class="kpi-val">48</span><span class="kpi-lbl">Active Tours</span><div class="kpi-delta up">↑ 3 new this week</div></div>
+      </div>
+      <div class="charts-row">
+        <div class="chart-card">
+          <div class="chart-title">Monthly Revenue (USD '000s) <span>Jan–Dec 2026</span></div>
+          <div class="bar-chart">
+            <div class="bw"><span class="b-val">42k</span><div class="bar" style="height:70%;background:var(--jl)"></div><span class="b-lbl">Jan</span></div>
+            <div class="bw"><span class="b-val">58k</span><div class="bar" style="height:85%;background:var(--jl)"></div><span class="b-lbl">Feb</span></div>
+            <div class="bw"><span class="b-val">71k</span><div class="bar" style="height:100%;background:var(--sf)"></div><span class="b-lbl">Mar</span></div>
+            <div class="bw"><span class="b-val">65k</span><div class="bar" style="height:92%;background:var(--jl)"></div><span class="b-lbl">Apr</span></div>
+            <div class="bw"><span class="b-val">53k</span><div class="bar" style="height:75%;background:var(--jl)"></div><span class="b-lbl">May</span></div>
+            <div class="bw"><span class="b-val">48k</span><div class="bar" style="height:68%;background:var(--jl)"></div><span class="b-lbl">Jun</span></div>
+            <div class="bw"><span class="b-val">62k</span><div class="bar" style="height:87%;background:var(--jl)"></div><span class="b-lbl">Jul</span></div>
+            <div class="bw"><span class="b-val">79k</span><div class="bar" style="height:110%;background:var(--jl)"></div><span class="b-lbl">Aug</span></div>
+            <div class="bw"><span class="b-val">85k</span><div class="bar" style="height:118%;background:var(--sf)"></div><span class="b-lbl">Sep</span></div>
+            <div class="bw"><span class="b-val">77k</span><div class="bar" style="height:107%;background:var(--jl)"></div><span class="b-lbl">Oct</span></div>
+            <div class="bw"><span class="b-val">90k</span><div class="bar" style="height:125%;background:var(--jl)"></div><span class="b-lbl">Nov</span></div>
+            <div class="bw"><span class="b-val">—</span><div class="bar" style="height:18%;background:#E5E7EB"></div><span class="b-lbl">Dec</span></div>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Bookings by Category</div>
+          <div class="donut-wrap">
+            <svg class="donut-svg" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="46" fill="none" stroke="#F3F4F6" stroke-width="18"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="var(--jl)" stroke-width="18" stroke-dasharray="87 202" stroke-dashoffset="0" transform="rotate(-90 60 60)"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="var(--sf)" stroke-width="18" stroke-dasharray="57 232" stroke-dashoffset="-87" transform="rotate(-90 60 60)"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="var(--oc)" stroke-width="18" stroke-dasharray="46 243" stroke-dashoffset="-144" transform="rotate(-90 60 60)"/>
+              <circle cx="60" cy="60" r="46" fill="none" stroke="var(--lo)" stroke-width="18" stroke-dasharray="32 257" stroke-dashoffset="-190" transform="rotate(-90 60 60)"/>
+              <text x="60" y="65" text-anchor="middle" font-size="12" font-weight="700" fill="#1C1410">1,284</text>
+            </svg>
+            <div style="width:100%">
+              <div class="dleg-item"><div class="dleg-lbl"><div class="dleg-dot" style="background:var(--jl)"></div>Cultural</div><div class="dleg-val">43%</div></div>
+              <div class="dleg-item"><div class="dleg-lbl"><div class="dleg-dot" style="background:var(--sf)"></div>Wildlife</div><div class="dleg-val">28%</div></div>
+              <div class="dleg-item"><div class="dleg-lbl"><div class="dleg-dot" style="background:var(--oc)"></div>Beach</div><div class="dleg-val">22%</div></div>
+              <div class="dleg-item"><div class="dleg-lbl"><div class="dleg-dot" style="background:var(--lo)"></div>Adventure</div><div class="dleg-val">7%</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="atbl-wrap">
+        <div class="atbl-head"><h3>Recent Bookings</h3></div>
+        <table class="atbl">
+          <thead><tr><th>ID</th><th>Client</th><th>Tour</th><th>Amount</th><th>Via</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>#SL-3041</td><td>Ashan Fernando</td><td>Yala Wildlife Safari</td><td>$498</td><td><span class="tag-pill pill-b">Direct</span></td><td><span class="sbadge s-ok">Confirmed</span></td></tr>
+            <tr><td>#SL-3040</td><td>Tina Cooray</td><td>Hill Country Tea Trail</td><td>$598</td><td><span class="tag-pill pill-g">Agent</span></td><td><span class="sbadge s-pend">Pending</span></td></tr>
+            <tr><td>#SL-3039</td><td>Michael Lee</td><td>Grand Tour Sri Lanka</td><td>$1,798</td><td><span class="tag-pill pill-b">Direct</span></td><td><span class="sbadge s-ok">Confirmed</span></td></tr>
+            <tr><td>#SL-3038</td><td>Ruwanthi Silva</td><td>Cultural Triangle Tour</td><td>$858</td><td><span class="tag-pill pill-g">Agent</span></td><td><span class="sbadge s-ok">Confirmed</span></td></tr>
+            <tr><td>#SL-3037</td><td>James O'Brien</td><td>Galle Beach Retreat</td><td>$398</td><td><span class="tag-pill pill-b">Direct</span></td><td><span class="sbadge s-can">Cancelled</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- REPORTS -->
+    <div id="admin-reports" class="apanel">
+      <div class="sect-title">Reports & Analytics</div>
+      <div class="sect-sub">Booking, revenue, and system performance reports.</div>
+      <div class="kpi-grid">
+        <div class="kpi"><span class="kpi-icon">✅</span><span class="kpi-val">1,041</span><span class="kpi-lbl">Confirmed Bookings</span><div class="kpi-delta up">↑ 14%</div></div>
+        <div class="kpi"><span class="kpi-icon">❌</span><span class="kpi-val">89</span><span class="kpi-lbl">Cancellations</span><div class="kpi-delta dn">↑ 3%</div></div>
+        <div class="kpi"><span class="kpi-icon">💰</span><span class="kpi-val">$84,920</span><span class="kpi-lbl">Total Revenue (YTD)</span><div class="kpi-delta up">↑ 18%</div></div>
+        <div class="kpi"><span class="kpi-icon">🔁</span><span class="kpi-val">34%</span><span class="kpi-lbl">Repeat Customers</span><div class="kpi-delta up">↑ 2%</div></div>
+      </div>
+      <div class="atbl-wrap">
+        <div class="atbl-head"><h3>Bookings by Tour Package</h3><div class="acts"><input class="search-sm" placeholder="Search tours…"/><button class="btn btn-o btn-sm">Export CSV</button></div></div>
+        <table class="atbl">
+          <thead><tr><th>Tour Package</th><th>Category</th><th>Bookings</th><th>Revenue</th><th>Rating</th><th>Cancellation Rate</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Ancient Kingdoms Cultural Tour</strong></td><td><span class="tag-pill pill-y">Cultural</span></td><td>284</td><td>$121,836</td><td>⭐ 4.9</td><td>4.2%</td></tr>
+            <tr><td><strong>Yala Wildlife Safari Adventure</strong></td><td><span class="tag-pill pill-g">Wildlife</span></td><td>231</td><td>$57,519</td><td>⭐ 4.9</td><td>3.1%</td></tr>
+            <tr><td><strong>Complete Sri Lanka Grand Tour</strong></td><td><span class="tag-pill pill-b">All Zones</span></td><td>156</td><td>$140,244</td><td>⭐ 5.0</td><td>1.9%</td></tr>
+            <tr><td><strong>Misty Hill Country Tea Trail</strong></td><td><span class="tag-pill pill-b">Hill Country</span></td><td>342</td><td>$102,258</td><td>⭐ 4.8</td><td>5.1%</td></tr>
+            <tr><td><strong>Elephant Country Experience</strong></td><td><span class="tag-pill pill-g">Wildlife</span></td><td>502</td><td>$94,878</td><td>⭐ 4.9</td><td>2.8%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="atbl-wrap">
+        <div class="atbl-head"><h3>Monthly Revenue</h3><div class="acts"><button class="btn btn-o btn-sm">Export PDF</button></div></div>
+        <table class="atbl">
+          <thead><tr><th>Month</th><th>Bookings</th><th>Gross Revenue</th><th>Discounts</th><th>Net Revenue</th><th>Growth</th></tr></thead>
+          <tbody>
+            <tr><td>January 2026</td><td>98</td><td>$6,480</td><td>$324</td><td>$6,156</td><td style="color:#16A34A;font-weight:700">+12%</td></tr>
+            <tr><td>February 2026</td><td>114</td><td>$7,524</td><td>$376</td><td>$7,148</td><td style="color:#16A34A;font-weight:700">+16%</td></tr>
+            <tr><td>March 2026</td><td>142</td><td>$9,374</td><td>$468</td><td>$8,906</td><td style="color:#16A34A;font-weight:700">+24%</td></tr>
+            <tr><td>April 2026</td><td>128</td><td>$8,447</td><td>$422</td><td>$8,025</td><td style="color:#DC2626;font-weight:700">−10%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- MANAGE TOURS -->
+    <div id="admin-tours" class="apanel">
+      <div class="sect-title">Manage Tour Packages</div>
+      <div class="sect-sub">Add, edit, and delete Sri Lanka tour packages.</div>
+      <div style="display:flex;justify-content:flex-end;margin-bottom:1.1rem">
+        <button class="btn btn-p btn-sm" onclick="alert('Add Tour form — coming in full build')">+ Add New Tour</button>
+      </div>
+      <div class="tmgmt-grid" id="admin-tour-grid"></div>
+    </div>
+
+    <!-- MANAGE USERS -->
+    <div id="admin-users" class="apanel">
+      <div class="sect-title">Manage Users</div>
+      <div class="sect-sub">View and manage all registered accounts.</div>
+      <div class="atbl-wrap">
+        <div class="atbl-head"><h3>All Users</h3><div class="acts"><input class="search-sm" placeholder="Search users…"/><button class="btn btn-o btn-sm">Export</button></div></div>
+        <table class="atbl">
+          <thead><tr><th>Name</th><th>Email</th><th>Type</th><th>Joined</th><th>Bookings</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td>Priya Mendis</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c3b3b1aabaa283a6aea2aaafeda0acae">[email&#160;protected]</a></td><td><span class="tag-pill pill-b">Client</span></td><td>Jan 2026</td><td>4</td><td><span class="sbadge s-ok">Active</span></td><td><button class="btn btn-o btn-sm">View</button></td></tr>
+            <tr><td>David Wickramasinghe</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="91f5f0e7f8f5d1fdf0fffaf0e5fee4e3e2bffdfa">[email&#160;protected]</a></td><td><span class="tag-pill pill-g">Agent</span></td><td>Dec 2025</td><td>82</td><td><span class="sbadge s-ok">Active</span></td><td><button class="btn btn-o btn-sm">View</button></td></tr>
+            <tr><td>Ashan Fernando</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="95f4e6fdf4fbd5f0f8f4fcf9bbf6faf8">[email&#160;protected]</a></td><td><span class="tag-pill pill-b">Client</span></td><td>Feb 2026</td><td>3</td><td><span class="sbadge s-ok">Active</span></td><td><button class="btn btn-o btn-sm">View</button></td></tr>
+            <tr><td>Tina Cooray</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c3b7aaada283a6aea2aaafeda0acae">[email&#160;protected]</a></td><td><span class="tag-pill pill-b">Client</span></td><td>Apr 2026</td><td>1</td><td><span class="sbadge s-pend">Pending Email</span></td><td><button class="btn btn-o btn-sm">View</button></td></tr>
+            <tr><td>Michael Lee</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e78a8b8282a7828a868e8bc984888a">[email&#160;protected]</a></td><td><span class="tag-pill pill-y">Partner</span></td><td>Nov 2025</td><td>8</td><td><span class="sbadge s-ok">Active</span></td><td><button class="btn btn-o btn-sm">View</button></td></tr>
+            <tr><td>Nirosha Gunawardena</td><td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2a4443584559424b6a594f584f444e4348044641">[email&#160;protected]</a></td><td><span class="tag-pill pill-g">Agent</span></td><td>Jan 2026</td><td>45</td><td><span class="sbadge s-ok">Active</span></td><td><button class="btn btn-o btn-sm">View</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div><!-- /admin -->
+
+<!-- ═══════════════════════════════════════════
+     AUTH MODAL
+═══════════════════════════════════════════ -->
+<div class="ov" id="auth-ov">
+<div class="modal">
+  <button class="mx" onclick="closeAuth()">✕</button>
+  <span class="m-logo">Travel<span>Booker</span> 🇱🇰</span>
+
+  <!-- Account type selector -->
+  <div class="type-tabs" id="type-tabs">
+    <div class="type-tab on" id="tt-user" onclick="setType('user')">👤 Normal User</div>
+    <div class="type-tab" id="tt-agent" onclick="setType('agent')">🤝 Travel Agent</div>
+  </div>
+
+  <!-- Login / Signup tabs -->
+  <div class="atabs">
+    <div class="atab on" id="at-login" onclick="switchAuthTab('login')">Log In</div>
+    <div class="atab" id="at-signup" onclick="switchAuthTab('signup')">Sign Up</div>
+  </div>
+
+  <!-- LOGIN FORM -->
+  <div id="auth-login">
+    <div class="fg"><label>Email Address</label><input type="email" id="login-email" placeholder="you@email.com"/></div>
+    <div class="fg"><label>Password</label><input type="password" id="login-pw" placeholder="••••••••"/></div>
+    <div class="forgot"><a>Forgot password?</a></div>
+    <div class="agent-info" id="agent-login-info" style="display:none">🤝 Agent login gives you access to commission tracking, client management, and agent-exclusive pricing.</div>
+    <button class="btn btn-p btn-full" id="login-btn" onclick="doLogin()">Log In</button>
+    <div class="m-note">Don't have an account? <a onclick="switchAuthTab('signup')">Sign Up</a></div>
+  </div>
+
+  <!-- SIGNUP FORM -->
+  <div id="auth-signup" style="display:none">
+    <div class="frow">
+      <div class="fg"><label>First Name</label><input placeholder="Priya"/></div>
+      <div class="fg"><label>Last Name</label><input placeholder="Mendis"/></div>
+    </div>
+    <div class="fg"><label>Email Address</label><input type="email" placeholder="priya@email.com"/></div>
+    <div class="fg"><label>Password</label><input type="password" placeholder="Min 8 characters"/></div>
+    <div class="agent-info" id="agent-signup-info" style="display:none">🤝 As a Travel Agent you'll earn <strong>8–12% commission</strong> on every booking, get access to agent-exclusive pricing, and manage bookings for your clients.<br><br>You will need to provide your agent license number after sign-up.</div>
+    <div class="fg" id="agent-license-fg" style="display:none"><label>Agent License Number</label><input placeholder="SL-AG-XXXX-XXXX"/></div>
+    <div class="fg" id="agency-fg" style="display:none"><label>Agency Name</label><input placeholder="Lanka Tours Ltd"/></div>
+    <button class="btn btn-p btn-full" id="signup-btn" onclick="doSignup()">Create Account →</button>
+    <div class="m-note">A verification email will be sent after signup.</div>
+  </div>
+</div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ════════════════════════════════
+// TOUR DATA
+// ════════════════════════════════
+const TOURS = [
+  {id:'ancient',name:'Ancient Kingdoms Cultural Tour',loc:'Cultural Triangle',dest:'Sigiriya · Polonnaruwa · Dambulla',dur:'7 Days',days:7,pax:'2–12 pax',price:429,rating:4.9,reviews:218,cats:['cultural'],deal:false,
+   badge:{text:'🔥 Bestseller',cls:'b-hot'},
+   img:'https://images.unsplash.com/photo-1585468274952-66591eb14165?w=900&q=80',
+   imgs:['https://images.unsplash.com/photo-1585468274952-66591eb14165?w=700&q=75','https://images.unsplash.com/photo-1642095012223-65ee6d570974?w=700&auto=format&fit=crop&q=75','https://images.unsplash.com/photo-1578519050142-afb511e518de?q=75&w=700&auto=format&fit=crop'],
+   d1:"Journey through Sri Lanka's magnificent Cultural Triangle, a UNESCO-listed region holding the island's greatest ancient wonders. Climb the iconic Sigiriya Rock Fortress rising 200 metres above the jungle floor, explore the moonlit ruins of Polonnaruwa, and meditate inside the awe-inspiring cave temples of Dambulla.",
+   d2:"This 7-day cultural immersion is guided by expert local historians. Stay in colonial heritage hotels surrounded by lush paddy fields, savour authentic Sri Lankan cuisine, and experience the warmth of village life. Perfect for history lovers and photographers.",
+   hls:[{i:'🏰',l:'Sigiriya Rock',v:"Lion's Rock Fortress"},{i:'🕌',l:'Dambulla Caves',v:'150 Buddha statues'},{i:'🏛',l:'Polonnaruwa',v:'Ancient royal city'},{i:'🦣',l:'Minneriya',v:'Elephant gathering'},{i:'🍵',l:'Cooking Class',v:'Village Sri Lankan feast'},{i:'⭐',l:'UNESCO Sites',v:'3 World Heritage Sites'}],
+   inc:['Accommodation (6 nights heritage hotels)','All meals (breakfast & dinner)','Expert English-speaking guide','All entrance fees','Air-conditioned transport','Elephant safari','Village cooking class'],
+   exc:['International flights','Travel insurance','Visa fees','Personal expenses','Lunch (except Day 1)','Tips'],
+   facIntro:'Every detail of your comfort has been arranged — first-class heritage accommodation, private transport, and expert guiding.',
+   facs:[{i:'🏨',n:'Heritage Hotels',d:'Hand-picked boutique properties'},{i:'🚗',n:'Private AC Transport',d:'Dedicated vehicle & driver'},{i:'🧭',n:'Expert Guide',d:'Certified cultural historian'},{i:'🍽',n:'Meals Included',d:'Breakfast & dinner daily'},{i:'🎫',n:'All Entry Fees',d:'UNESCO sites, parks, temples'},{i:'🦣',n:'Safari Jeep',d:'4WD for Minneriya safari'},{i:'💧',n:'Bottled Water',d:'Throughout the tour'},{i:'📱',n:'24/7 Support',d:'WhatsApp with your guide'}],
+   revs:[{name:'Sarah Thompson',flag:'🇬🇧',stars:5,date:'March 2026',txt:"Absolutely breathtaking. Climbing Sigiriya at sunrise was worth every step. Our guide's knowledge made every ruin come alive. Ranks in my top 3 travel experiences ever."},{name:'Rajesh Kumar',flag:'🇮🇳',stars:5,date:'February 2026',txt:"Perfect organisation. The heritage hotels were beautiful, food incredible. The elephant gathering at Minneriya left me speechless. Highly recommend TravelBooker."},{name:'Emma Müller',flag:'🇩🇪',stars:4,date:'January 2026',txt:"Wonderful tour with genuine cultural depth. The cooking class was a highlight. Day 5 was quite packed but overall an exceptional experience."}]},
+
+  {id:'hills',name:'Misty Hill Country Tea Trail',loc:'Ella · Nuwara Eliya',dest:'Ella · Nuwara Eliya · Haputale',dur:'5 Days',days:5,pax:'2–8 pax',price:299,rating:4.8,reviews:342,cats:['hills'],deal:false,
+   badge:{text:'🍃 Eco Tour',cls:'b-eco'},
+   img:'https://images.unsplash.com/photo-1578519050142-afb511e518de?q=80&w=900&auto=format&fit=crop',
+   imgs:['https://images.unsplash.com/photo-1578519050142-afb511e518de?q=75&w=700&auto=format&fit=crop','https://images.unsplash.com/photo-1585468274952-66591eb14165?w=700&q=75','https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=700&auto=format&fit=crop&q=75'],
+   d1:"Ride the legendary blue train through emerald tea estates clinging to misty mountain slopes, waking up to cool air and panoramic views. Sri Lanka's Hill Country is lush, serene, and utterly spectacular.",
+   d2:"From the dramatic Nine Arch Bridge at Ella to the fragrant tea factories of Nuwara Eliya, this 5-day trail weaves through some of the most photogenic landscapes on earth. Walk through carpet-green tea fields and taste fresh-plucked Ceylon tea.",
+   hls:[{i:'🚂',l:'Scenic Train',v:"World's most scenic ride"},{i:'🌉',l:'Nine Arch Bridge',v:"Ella's iconic viaduct"},{i:'🍵',l:'Tea Factory',v:'Ceylon tea from leaf to cup'},{i:'🌄',l:"Adam's Peak",v:'Sunrise hike'},{i:'💨',l:'Cool Climate',v:'Avg 18°C'},{i:'🌿',l:'Eco Lodges',v:'Sustainable stays'}],
+   inc:['4 nights eco boutique accommodation','Daily breakfast','Scenic train tickets (Kandy–Ella)','Tea factory tour & tasting','Little Adams Peak guided hike','Nine Arch Bridge visit','Local transport'],
+   exc:['International flights','Travel insurance','Lunch & dinner (except welcome)','Personal shopping','Tips'],
+   facIntro:'Our eco-conscious Hill Country trail uses sustainable boutique properties minimising environmental impact while maximising comfort.',
+   facs:[{i:'🌿',n:'Eco Boutique Lodges',d:'Sustainably run guesthouses'},{i:'🚂',n:'Scenic Train Tickets',d:'Reserved Kandy–Ella seats'},{i:'🧭',n:'Nature Guide',d:'Local hill country naturalist'},{i:'🍳',n:'Breakfast Daily',d:'Farm-fresh Sri Lankan breakfast'},{i:'🎟',n:'Entry Fees',d:'All activity fees included'},{i:'🚌',n:'Local Transport',d:'Tuk-tuk, jeep & van'},{i:'💧',n:'Water & Snacks',d:'On all hikes'},{i:'📸',n:'Photo Spots',d:'Best photography locations'}],
+   revs:[{name:"James O'Brien",flag:'🇮🇪',stars:5,date:'March 2026',txt:"The train ride alone was worth the trip. Watching misty mountains roll by with a cup of Ceylon tea in hand — I've never felt more at peace. The Nine Arch Bridge at golden hour was pure magic."},{name:'Aysha Mohammed',flag:'🇦🇪',stars:5,date:'February 2026',txt:"Perfect escape from the heat. The tea factory tour was fascinating. Little Adam's Peak sunrise was challenging but absolutely worth it."},{name:'Tom Bradley',flag:'🇦🇺',stars:4,date:'January 2026',txt:"Beautiful tour, excellent organisation. The train journey is genuinely spectacular — book 6 months ahead for good seats."}]},
+
+  {id:'yala',name:'Yala Wildlife Safari Adventure',loc:'Yala National Park',dest:'Yala National Park — Palatupana',dur:'3 Days',days:3,pax:'2–6 pax',price:249,rating:4.9,reviews:187,cats:['wildlife'],deal:true,
+   badge:{text:'25% OFF',cls:'b-deal'},
+   img:'https://plus.unsplash.com/premium_photo-1661832611972-b6ee1aba3581?w=900&auto=format&fit=crop&q=80',
+   imgs:['https://plus.unsplash.com/premium_photo-1661832611972-b6ee1aba3581?w=700&auto=format&fit=crop&q=75','https://images.unsplash.com/photo-1533484482814-3fe2d922be89?w=700&auto=format&fit=crop&q=75','https://images.unsplash.com/photo-1580910527739-556eb89f9d65?w=700&auto=format&fit=crop&q=75'],
+   d1:"Sri Lanka has the world's highest density of leopards per square kilometre, and Yala is where you'll find them. This UNESCO Biosphere Reserve is also home to sloth bears, elephants, crocodiles, and over 215 bird species.",
+   d2:"Our small-group safaris go into the park at dawn and dusk — the golden hours when wildlife is most active. Your expert tracker will know exactly where to find the resident leopards. Stay in a luxury tented camp on the park border.",
+   hls:[{i:'🐆',l:'Leopard Spotting',v:'World-highest density'},{i:'🐘',l:'Wild Elephants',v:'Herds roaming freely'},{i:'🦁',l:'Sloth Bears',v:'Rare rocky outcrop sightings'},{i:'🦚',l:'215 Bird Species',v:'Birdwatcher paradise'},{i:'🌅',l:'Dawn & Dusk Drives',v:'2 game drives per day'},{i:'⛺',l:'Jungle Camp',v:'Luxury tented border camp'}],
+   inc:['2 nights luxury tented camp','All meals (full board)','4 game drives in open 4WD jeep','Expert wildlife tracker & guide','Park entrance fees','Binoculars & wildlife checklist','Transfer from Colombo or Galle'],
+   exc:['International flights','Travel insurance','Alcoholic beverages','Personal expenses','Tips'],
+   facIntro:"Our Yala safari uses premium eco-tented camps with all modern comforts — because wildlife viewing shouldn't mean roughing it.",
+   facs:[{i:'⛺',n:'Luxury Tented Camp',d:'En-suite tents with real beds'},{i:'🚙',n:'Open 4WD Jeep',d:'Purpose-built, max 6 pax'},{i:'🔭',n:'Wildlife Tracker',d:'10+ years experience'},{i:'🍽',n:'Full Board Meals',d:'All camp meals included'},{i:'🎫',n:'Park Fees',d:'All national park fees'},{i:'📷',n:'Photography Tips',d:'Wildlife photography guidance'},{i:'💧',n:'Water & Snacks',d:'Cooler box on all drives'},{i:'🦅',n:'Bird Checklist',d:'215 species identification guide'}],
+   revs:[{name:'Amara Osei',flag:'🇬🇭',stars:5,date:'March 2026',txt:"Saw leopards on the VERY FIRST morning! Our tracker Sunil found three different leopards over two days. The tented camp was surprisingly luxurious. Utterly magical."},{name:'Chen Wei',flag:'🇨🇳',stars:5,date:'February 2026',txt:"Best wildlife experience of my life. Small group made it intimate and we could linger at sightings. Excellent photography opportunities."},{name:'Priya Nair',flag:'🇮🇳',stars:5,date:'January 2026',txt:"The elephant herd at the waterhole brought tears to my eyes. We spotted 47 bird species on a single drive. Camp food was delicious."}]},
+
+  {id:'beach',name:'South Coast Beach & Whales',loc:'Mirissa · Unawatuna',dest:'Mirissa · Unawatuna · Weligama',dur:'4 Days',days:4,pax:'2–10 pax',price:319,rating:4.7,reviews:263,cats:['beach'],deal:false,
+   badge:{text:'🌊 Beach',cls:'b-adv'},
+   img:'https://images.unsplash.com/photo-1580910527739-556eb89f9d65?w=900&auto=format&fit=crop&q=80',
+   imgs:['https://images.unsplash.com/photo-1580910527739-556eb89f9d65?w=700&auto=format&fit=crop&q=75','https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=700&auto=format&fit=crop&q=75','https://images.unsplash.com/photo-1533484482814-3fe2d922be89?w=700&auto=format&fit=crop&q=75'],
+   d1:"Sri Lanka's south coast is one of the Indian Ocean's most dazzling stretches — golden sand, warm turquoise waters, and the world's best blue whale watching just 10km offshore.",
+   d2:"Spend four days at Mirissa and Unawatuna, snorkelling coral reefs, surfing at Weligama Bay, and taking a sunrise whale watching cruise to encounter blue whales and spinner dolphins. Stay in a beachfront boutique villa.",
+   hls:[{i:'🐋',l:'Blue Whale Watching',v:"Largest animal on earth"},{i:'🌊',l:'Mirissa Beach',v:"Sri Lanka's most beautiful"},{i:'🤿',l:'Snorkelling',v:'Coral reefs at Unawatuna'},{i:'🏄',l:'Surf Lessons',v:'Beginner surf, Weligama'},{i:'🐢',l:'Sea Turtles',v:'Rekawa nesting site'},{i:'🏰',l:'Galle Fort',v:'UNESCO Dutch fort'}],
+   inc:['3 nights beachfront boutique villa','Daily breakfast','Whale watching cruise','Snorkelling equipment & boat trip','Surf lesson at Weligama','Galle Fort guided walk','All transfers'],
+   exc:['International flights','Travel insurance','Lunch & dinner','Alcoholic beverages','Tips'],
+   facIntro:'Beach luxury meets Sri Lankan warmth — boutique villas steps from the sand, with every beach activity arranged.',
+   facs:[{i:'🏨',n:'Beachfront Villa',d:'Steps from the sand'},{i:'⛵',n:'Whale Watch Boat',d:'Certified vessel, life jackets'},{i:'🤿',n:'Snorkel Gear',d:'Mask, fins & wetsuit'},{i:'🏄',n:'Surf Board & Instructor',d:'SLSA certified surf school'},{i:'🚌',n:'AC Transport',d:'All road transfers'},{i:'🐢',n:'Turtle Tour',d:'Rekawa sanctuary at dusk'},{i:'🍳',n:'Breakfast Daily',d:'Fresh tropical breakfast'},{i:'🌞',n:'Beach Equipment',d:'Sunbeds & umbrellas'}],
+   revs:[{name:'Laura Bianchi',flag:'🇮🇹',stars:5,date:'March 2026',txt:"The blue whale was the size of the boat — I literally cried. Mirissa is paradise on earth. The villa staff were incredibly warm. Flawless trip."},{name:'Mark Davies',flag:'🇦🇺',stars:4,date:'February 2026',txt:"Fantastic 4 days. The whale watching alone makes this worth it. TravelBooker handled our rescheduling due to weather perfectly."},{name:'Mei Lin',flag:'🇸🇬',stars:5,date:'January 2026',txt:"Loved every day. Snorkelling at Unawatuna was colourful and clear. Turtle watching at Rekawa at midnight under the stars is unforgettable."}]},
+
+  {id:'kandy',name:'Temple of the Tooth & Sacred Cities',loc:'Kandy · Anuradhapura',dest:'Kandy · Dambulla · Anuradhapura',dur:'4 Days',days:4,pax:'2–15 pax',price:279,rating:4.8,reviews:411,cats:['cultural','pilgrimage'],deal:false,
+   badge:{text:'🏛 Cultural',cls:'b-cult'},
+   img:'https://images.unsplash.com/photo-1642095012223-65ee6d570974?w=900&auto=format&fit=crop&q=80',
+   imgs:['https://images.unsplash.com/photo-1642095012223-65ee6d570974?w=700&auto=format&fit=crop&q=75','https://images.unsplash.com/photo-1585468274952-66591eb14165?w=700&q=75','https://images.unsplash.com/photo-1578519050142-afb511e518de?q=75&w=700&auto=format&fit=crop'],
+   d1:"Home to Sri Lanka's most sacred Buddhist relic — the Tooth of the Buddha — the Temple of the Tooth in Kandy is a living, breathing pilgrimage site where ancient ritual meets everyday devotion.",
+   d2:"Beyond Kandy, journey to Anuradhapura, Sri Lanka's first capital, where 2,000-year-old dagobas pierce the sky and the sacred Bodhi Tree — 2,300 years old — still stands as the oldest tree in recorded history.",
+   hls:[{i:'🏯',l:'Temple of Tooth',v:"Sri Lanka's holiest site"},{i:'🌿',l:'Sacred Bodhi Tree',v:'2,300 year old'},{i:'🏛',l:'Anuradhapura',v:'Ancient capital, UNESCO'},{i:'🥁',l:'Pooja Ceremony',v:'Drum & dance ritual, 3× daily'},{i:'🌺',l:'Royal Gardens',v:'Peradeniya Botanical Gardens'},{i:'🕌',l:'Dambulla Caves',v:'150 Buddha statues'}],
+   inc:['3 nights boutique accommodation','Daily breakfast & 1 dinner','Temple of Tooth entrance','Anuradhapura guided tour','Botanical Gardens visit','Pooja ceremony viewing','All transfers','Expert guide'],
+   exc:['International flights','Travel insurance','Other meals','Temple offerings','Tips'],
+   facIntro:'A spiritually rich journey using properties chosen for their proximity to key sacred sites and authentic character.',
+   facs:[{i:'🏨',n:'Heritage Hotels',d:'Colonial-era boutique in Kandy'},{i:'🧭',n:'Cultural Guide',d:'Buddhist history specialist'},{i:'🚗',n:'Private Transport',d:'AC vehicle for all transfers'},{i:'🍽',n:'Breakfast & Dinner',d:'Authentic Sri Lankan meals'},{i:'🎫',n:'All Entry Fees',d:'Temple, sites, gardens covered'},{i:'🥁',n:'Ceremony Viewing',d:'Reserved Pooja ceremony seats'},{i:'🌺',n:'Floral Offerings',d:'Lotus offerings for temple'},{i:'📿',n:'Meditation Session',d:'Optional 30-min guided session'}],
+   revs:[{name:'Fatima Al-Rashidi',flag:'🇸🇦',stars:5,date:'March 2026',txt:"A profound experience. The Pooja ceremony with drumming and incense was unlike anything I have witnessed. Our guide explained Buddhist traditions with such depth. Anuradhapura filled me with awe."},{name:'Peter Schmidt',flag:'🇩🇪',stars:5,date:'February 2026',txt:"Beautifully organised pilgrimage even for non-religious travellers. The Sacred Bodhi Tree is genuinely overwhelming — 2,300 years old and still growing."},{name:'Hiroshi Tanaka',flag:'🇯🇵',stars:5,date:'January 2026',txt:"As a Buddhist this tour moved me deeply. The Temple of Tooth at the evening Pooja — with white-clad devotees and elephants — was exactly as I had imagined."}]},
+
+  {id:'elephants',name:'Elephant Country Experience',loc:'Pinnawala · Udawalawe',dest:'Pinnawala · Udawalawe National Park',dur:'2 Days',days:2,pax:'2–10 pax',price:189,rating:4.9,reviews:502,cats:['wildlife'],deal:true,
+   badge:{text:'💰 Best Value',cls:'b-deal'},
+   img:'https://images.unsplash.com/photo-1533484482814-3fe2d922be89?w=900&auto=format&fit=crop&q=80',
+   imgs:['https://images.unsplash.com/photo-1533484482814-3fe2d922be89?w=700&auto=format&fit=crop&q=75','https://plus.unsplash.com/premium_photo-1661832611972-b6ee1aba3581?w=700&auto=format&fit=crop&q=75','https://images.unsplash.com/photo-1580910527739-556eb89f9d65?w=700&auto=format&fit=crop&q=75'],
+   d1:"Meet Sri Lanka's most beloved animals up close. At the Pinnawala Elephant Orphanage, watch rescued baby elephants splash and play in the Maha Oya River during their twice-daily bath — one of the most heartwarming wildlife experiences in Asia.",
+   d2:"Continue to Udawalawe National Park where wild herds of over 600 elephants roam freely across the grasslands. Unlike Yala, Udawalawe is almost guaranteed elephant sightings on every game drive — perfect for families.",
+   hls:[{i:'🐘',l:'Pinnawala Orphanage',v:'Baby elephant bathing'},{i:'🌊',l:'River Bath',v:'Elephants in Maha Oya'},{i:'🏞',l:'Udawalawe Park',v:'600+ wild elephants'},{i:'🦅',l:'Bird Life',v:'200+ species'},{i:'🌅',l:'Sunset Safari',v:'Golden hour grasslands'},{i:'👨‍👩‍👧‍👦',l:'Family Friendly',v:'Perfect for all ages'}],
+   inc:['1 night hotel near Udawalawe','Daily breakfast','Pinnawala entry & guide','Udawalawe game drive (4WD jeep)','All transfers','Water & snacks'],
+   exc:['International flights','Travel insurance','Lunch & dinner','Personal expenses','Tips'],
+   facIntro:'A short but unforgettable wildlife weekend — everything arranged for a stress-free elephant encounter.',
+   facs:[{i:'🏨',n:'Hotel near Park',d:'10 min from park gate'},{i:'🚙',n:'4WD Jeep Safari',d:'Expert tracker'},{i:'🎫',n:'Entry Fees',d:'Pinnawala & Udawalawe'},{i:'🚗',n:'All Transfers',d:'AC vehicle from Colombo'},{i:'🍳',n:'Breakfast Included',d:'Full breakfast both mornings'},{i:'💧',n:'Water & Snacks',d:'Cooler box on game drive'},{i:'📷',n:'Photo Opportunities',d:'Best wildlife photography spots'},{i:'🎒',n:'Guide Briefing',d:'Pre-safari species guide'}],
+   revs:[{name:'Sophie Martin',flag:'🇫🇷',stars:5,date:'March 2026',txt:"Watching 80 elephants splash in the river at Pinnawala was the highlight of our entire Sri Lanka trip. Udawalawe exceeded all expectations — 47 wild elephants in one drive!"},{name:'Carlos Rodrigues',flag:'🇧🇷',stars:5,date:'February 2026',txt:"Perfect weekend escape. Great value, easy from Colombo. Every minute was accounted for without feeling rushed."},{name:'Anna Kowalski',flag:'🇵🇱',stars:5,date:'January 2026',txt:"Wild elephants just metres from the jeep — breathtaking. Well organised, comfortable transport, knowledgeable driver. Would book again."}]},
+
+  {id:'galle',name:'Galle Dutch Fort & Beach Retreat',loc:'Galle · South Coast',dest:'Galle Fort · Unawatuna Beach',dur:'3 Days',days:3,pax:'2–12 pax',price:199,rating:4.6,reviews:329,cats:['beach','cultural'],deal:true,
+   badge:{text:'🔥 Hot Deal',cls:'b-hot'},
+   img:'https://lavingotravels.com/wp-content/uploads/2023/09/galle-fort.jpg',
+   imgs:['https://lavingotravels.com/wp-content/uploads/2023/09/galle-fort.jpg','https://lavingotravels.com/wp-content/uploads/2023/09/galle-fort.jpg','https://lavingotravels.com/wp-content/uploads/2023/09/galle-fort.jpg'],
+   d1:"Galle Fort is Sri Lanka's most atmospheric destination — cobbled lanes, Dutch colonial architecture, boutique hotels, and ocean-view ramparts that turn golden at sunset. A living UNESCO World Heritage Site.",
+   d2:"Combine the fort's cultural riches with pristine south coast beaches. Browse boutiques selling handcrafted jewellery, sip coffee on a 400-year-old rampart wall, and swim in warm Indian Ocean waters just minutes away.",
+   hls:[{i:'🏰',l:'Galle Fort',v:'UNESCO Dutch ramparts'},{i:'🌅',l:'Sunset Ramparts',v:'Best sunset in Sri Lanka'},{i:'🛍',l:'Boutique Shopping',v:'Independent designers'},{i:'☕',l:'Fort Cafés',v:'World-class coffee'},{i:'🌊',l:'Beach Access',v:'Unawatuna, 2km from fort'},{i:'📸',l:'Photography',v:'Stunning colonial streets'}],
+   inc:['2 nights boutique hotel at Galle Fort','Daily breakfast','Guided Fort walking tour','Unawatuna beach afternoon','All transfers','Bottled water'],
+   exc:['International flights','Travel insurance','Lunch & dinner','Shopping','Tips'],
+   facIntro:'Stay inside the UNESCO fort itself — a unique blend of history, character, and comfort the south coast is famous for.',
+   facs:[{i:'🏨',n:'Fort Boutique Hotel',d:'Character property in/near fort'},{i:'🧭',n:'Expert Fort Guide',d:'Certified heritage tour guide'},{i:'🚌',n:'All Transfers',d:'Colombo–Galle–Colombo'},{i:'🍳',n:'Daily Breakfast',d:'Fresh tropical breakfast'},{i:'🛍',n:'Shopping Map',d:'Curated boutique guide'},{i:'📸',n:'Photo Walk',d:'Best photography spots'}],
+   revs:[{name:'Emma Clarke',flag:'🇬🇧',stars:5,date:'March 2026',txt:"Galle Fort is one of the most magical places I've visited. Waking up to those cobbled streets was wonderful. The sunset from the ramparts is as spectacular as everyone says."},{name:'David Kim',flag:'🇺🇸',stars:4,date:'February 2026',txt:"Great value for 3 days. The fort is beautifully preserved and the guide was excellent. Unawatuna beach is gorgeous."},{name:'Maria Santos',flag:'🇧🇷',stars:5,date:'January 2026',txt:"Perfect combination of history and beach. Stepping through those Dutch gates is like going back in time. The boutique shops are creative and affordable."}]}
+];
+
+// ════════════════════════════════
+// STATE
+// ════════════════════════════════
+let currentTour = null;
+let currentUserType = 'user'; // 'user' or 'agent'
+let currentAuthTab = 'login';
+let chipCat = '';
+
+// ════════════════════════════════
+// NAV
+// ════════════════════════════════
+function nav(pg) {
+  document.querySelectorAll('.pg').forEach(p => p.classList.remove('on'));
+  document.getElementById('pg-' + pg)?.classList.add('on');
+  // Update active nav link
+  document.querySelectorAll('.nav-links a[id^="nl-"]').forEach(a => a.classList.remove('active'));
+  if(pg === 'home') document.getElementById('nl-home')?.classList.add('active');
+  if(pg === 'tours') document.getElementById('nl-tours')?.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ════════════════════════════════
+// RENDER TOUR CARDS
+// ════════════════════════════════
+function tourCard(t, small) {
+  return `<div class="tcard" onclick="openTourDetail('${t.id}')">
+    <div class="tc-img">
+      <img src="${t.img}" alt="${t.name}" loading="lazy"/>
+      <span class="tbadge ${t.badge.cls}">${t.badge.text}</span>
+      <button class="wbtn" onclick="event.stopPropagation();this.classList.toggle('liked');this.textContent=this.classList.contains('liked')?'♥':'♡'">♡</button>
+    </div>
+    <div class="tc-body">
+      <div class="tc-loc">📍 ${t.loc}</div>
+      <h3 class="tc-name">${t.name}</h3>
+      <div class="tc-meta"><span>📅 ${t.dur}</span><span>👥 ${t.pax}</span></div>
+      <div class="tc-foot">
+        <div class="tc-price"><span class="from">From</span><span class="amt">$${t.price}</span><span class="per">/person</span></div>
+        <div class="tc-rating"><span class="stars">★</span>${t.rating} (${t.reviews})</div>
+      </div>
+      <button class="book-btn" onclick="event.stopPropagation();openTourDetail('${t.id}')">View Details</button>
+    </div>
+  </div>`;
+}
+
+function renderHomeTours() {
+  const g = document.getElementById('home-tour-grid');
+  if(g) g.innerHTML = TOURS.slice(0,6).map(t => tourCard(t)).join('');
+}
+
+// ════════════════════════════════
+// TOURS PAGE FILTER & RENDER
+// ════════════════════════════════
+function filterAndRender() {
+  const q = (document.getElementById('tour-search-inp')?.value || '').toLowerCase();
+  const cat = document.getElementById('tour-cat-sel')?.value || '';
+  const dur = document.getElementById('tour-dur-sel')?.value || '';
+  const maxPrice = parseInt(document.getElementById('price-range')?.value || '1000');
+  const sort = document.getElementById('sort-sel')?.value || '';
+  const chkCats = [...document.querySelectorAll('.filter-opt input:checked')].map(c => c.value);
+  const chkRats = [...document.querySelectorAll('.filter-opt input[value="5"]:checked, .filter-opt input[value="4"]:checked')].map(c => parseFloat(c.value));
+
+  let filtered = TOURS.filter(t => {
+    if(q && !t.name.toLowerCase().includes(q) && !t.dest.toLowerCase().includes(q)) return false;
+    if(cat && !t.cats.includes(cat)) return false;
+    if(chipCat === 'deal' && !t.deal) return false;
+    if(chipCat && chipCat !== 'deal' && chipCat !== '' && !t.cats.includes(chipCat)) return false;
+    if(chipCat === 'budget' && t.price >= 250) return false;
+    if(dur === 'short' && t.days > 3) return false;
+    if(dur === 'medium' && (t.days < 4 || t.days > 7)) return false;
+    if(dur === 'long' && (t.days < 8 || t.days > 14)) return false;
+    if(dur === 'grand' && t.days < 15) return false;
+    if(t.price > maxPrice) return false;
+    if(chkCats.length && !chkCats.some(c => t.cats.includes(c))) return false;
+    return true;
+  });
+
+  if(sort === 'price-asc') filtered.sort((a,b) => a.price - b.price);
+  if(sort === 'price-desc') filtered.sort((a,b) => b.price - a.price);
+  if(sort === 'rating') filtered.sort((a,b) => b.rating - a.rating);
+
+  const g = document.getElementById('tours-grid');
+  const cnt = document.getElementById('tour-count');
+  if(g) g.innerHTML = filtered.length ? filtered.map(t => tourCard(t)).join('') : '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--mu)"><div style="font-size:2.5rem;margin-bottom:1rem">🔍</div><div style="font-size:1rem;font-weight:600">No tours found for your filters</div><div style="font-size:.85rem;margin-top:.5rem">Try adjusting your search or filters</div></div>';
+  if(cnt) cnt.textContent = `Showing ${filtered.length} tour${filtered.length !== 1 ? 's' : ''}`;
+}
+
+function setChip(el, cat) {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  chipCat = cat;
+  if(cat && cat !== 'budget' && cat !== 'deal') {
+    const sel = document.getElementById('tour-cat-sel');
+    if(sel) sel.value = cat;
+  }
+  filterAndRender();
+}
+
+function resetFilters() {
+  document.getElementById('tour-search-inp').value = '';
+  document.getElementById('tour-cat-sel').value = '';
+  document.getElementById('tour-dur-sel').value = '';
+  document.getElementById('price-range').value = '1000';
+  document.getElementById('pr-val').textContent = '$1000';
+  document.getElementById('sort-sel').value = '';
+  document.querySelectorAll('.filter-opt input').forEach(c => c.checked = false);
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+  document.querySelector('.chip').classList.add('on');
+  chipCat = '';
+  filterAndRender();
+}
+
+// ════════════════════════════════
+// TOUR DETAIL
+// ════════════════════════════════
+function openTourDetail(id) {
+  currentTour = TOURS.find(t => t.id === id);
+  if(!currentTour) return;
+  const t = currentTour;
+
+  document.getElementById('tdp-img').src = t.img;
+  document.getElementById('tdp-crumb-nm').textContent = t.name;
+  document.getElementById('tdp-title').textContent = t.name;
+  document.getElementById('tdp-dest').textContent = '📍 ' + t.loc;
+  document.getElementById('tdp-dur').textContent = '📅 ' + t.dur;
+  document.getElementById('tdp-grp').textContent = '👥 ' + t.pax;
+  document.getElementById('tdp-rat-meta').textContent = '⭐ ' + t.rating + ' (' + t.reviews + ' reviews)';
+  document.getElementById('tdp-badges').innerHTML = `<span class="tbadge ${t.badge.cls}">${t.badge.text}</span>`;
+
+  // gallery
+  const gi = document.querySelectorAll('#tdp-gallery .gi img');
+  t.imgs.forEach((src, i) => { if(gi[i]) gi[i].src = src; });
+
+  // about
+  document.getElementById('tdp-d1').textContent = t.d1;
+  document.getElementById('tdp-d2').textContent = t.d2;
+  document.getElementById('tdp-hls').innerHTML = t.hls.map(h => `<div class="hl-card"><span class="hl-icon">${h.i}</span><div class="hl-lbl">${h.l}</div><div class="hl-val">${h.v}</div></div>`).join('');
+  document.getElementById('tdp-inc').innerHTML = t.inc.map(i => `<li>${i}</li>`).join('');
+  document.getElementById('tdp-exc').innerHTML = t.exc.map(i => `<li>${i}</li>`).join('');
+
+  // facilities
+  document.getElementById('tdp-fac-intro').textContent = t.facIntro;
+  document.getElementById('tdp-facs').innerHTML = t.facs.map(f => `<div class="fac-item"><span class="fac-icon">${f.i}</span><div><div class="fac-text">${f.n}</div><div class="fac-sub">${f.d}</div></div></div>`).join('');
+
+  // reviews
+  document.getElementById('tdp-bigr').textContent = t.rating;
+  document.getElementById('tdp-rev-cnt').textContent = t.reviews + ' reviews';
+  document.getElementById('tdp-revs').innerHTML = t.revs.map(r => `<div class="rev-card"><div class="rc-hd"><div class="rc-av">${r.flag}</div><div><div class="rc-nm">${r.name}</div><div class="rc-dt">${r.date}</div></div></div><div class="rc-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div><div class="rc-txt">${r.txt}</div></div>`).join('');
+
+  // sidebar
+  document.getElementById('bs-price').textContent = '$' + t.price;
+  document.getElementById('bs-rat-txt').textContent = t.rating + ' (' + t.reviews + ' reviews)';
+  calcBS();
+
+  // reset tabs
+  document.querySelectorAll('.tdp-tab').forEach(b => b.classList.remove('on'));
+  document.querySelectorAll('.tdp-tc').forEach(c => c.classList.remove('on'));
+  document.querySelector('.tdp-tab').classList.add('on');
+  document.getElementById('tc-about').classList.add('on');
+
+  nav('detail');
+}
+
+function tdpTab(id, el) {
+  document.querySelectorAll('.tdp-tab').forEach(b => b.classList.remove('on'));
+  document.querySelectorAll('.tdp-tc').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('tc-' + id).classList.add('on');
+}
+
+function calcBS() {
+  if(!currentTour) return;
+  const pax = parseInt(document.getElementById('bs-pax')?.value || 2);
+  const sub = currentTour.price * pax;
+  document.getElementById('bs-sum-name').textContent = currentTour.name + ' × ' + pax;
+  document.getElementById('bs-sum-sub').textContent = '$' + sub.toLocaleString();
+  document.getElementById('bs-sum-tot').textContent = '$' + (sub + 29).toLocaleString();
+}
+
+// ════════════════════════════════
+// BOOKING FORM
+// ════════════════════════════════
+function goBooking() {
+  if(!currentTour) return;
+  const t = currentTour;
+  document.getElementById('bf-form-wrap').style.display = 'block';
+  document.getElementById('bf-confirm').style.display = 'none';
+  ['ps1','ps2','ps3'].forEach((id,i) => { const el = document.getElementById(id); el.className = 'step-num ' + (i===0?'sn-cur':'sn-todo'); el.textContent = i+1; });
+  document.getElementById('bf-tour-nm').textContent = t.name;
+  document.getElementById('bf-thumb').src = t.imgs[0];
+  document.getElementById('bf-nm2').textContent = t.name;
+  document.getElementById('bf-dest2').textContent = '📍 ' + t.dest;
+  calcBF();
+  nav('booking');
+}
+
+function calcBF() {
+  if(!currentTour) return;
+  const pax = parseInt(document.getElementById('bf-pax')?.value || 2);
+  const date = document.getElementById('bf-date')?.value || '';
+  const sub = currentTour.price * pax;
+  const tax = Math.round(sub * 0.15);
+  document.getElementById('bf-pax-show').textContent = pax + ' People';
+  document.getElementById('bf-date-show').textContent = date || '—';
+  document.getElementById('bf-ln1').textContent = currentTour.name + ' × ' + pax;
+  document.getElementById('bf-sub').textContent = '$' + sub.toLocaleString();
+  document.getElementById('bf-tax').textContent = '$' + tax.toLocaleString();
+  document.getElementById('bf-tot').textContent = '$' + (sub + 29 + tax).toLocaleString();
+}
+
+function confirmBooking() {
+  if(!currentTour) return;
+  const pax = parseInt(document.getElementById('bf-pax')?.value || 2);
+  const date = document.getElementById('bf-date')?.value || 'TBC';
+  const sub = currentTour.price * pax;
+  const tax = Math.round(sub * 0.15);
+  const tot = sub + 29 + tax;
+  ['ps1','ps2','ps3'].forEach(id => { const el = document.getElementById(id); el.className = 'step-num sn-done'; el.textContent = '✓'; });
+  document.getElementById('bc-nm').innerHTML = '🌴 Tour: <strong>' + currentTour.name + '</strong>';
+  document.getElementById('bc-date').textContent = date;
+  document.getElementById('bc-pax').textContent = pax + ' People';
+  document.getElementById('bc-tot').textContent = '$' + tot.toLocaleString() + ' USD';
+  document.getElementById('bf-form-wrap').style.display = 'none';
+  document.getElementById('bf-confirm').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function selPm(el) { document.querySelectorAll('.pm-opt').forEach(p => p.classList.remove('on')); el.classList.add('on'); }
+
+// ════════════════════════════════
+// AUTH MODAL
+// ════════════════════════════════
+function openAuth(tab) {
+  currentAuthTab = tab || 'login';
+  document.getElementById('auth-ov').classList.add('on');
+  switchAuthTab(currentAuthTab);
+}
+function closeAuth() { document.getElementById('auth-ov').classList.remove('on'); }
+
+function switchAuthTab(tab) {
+  currentAuthTab = tab;
+  document.getElementById('at-login').classList.toggle('on', tab === 'login');
+  document.getElementById('at-signup').classList.toggle('on', tab === 'signup');
+  document.getElementById('auth-login').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('auth-signup').style.display = tab === 'signup' ? 'block' : 'none';
+}
+
+function setType(type) {
+  currentUserType = type;
+  document.getElementById('tt-user').classList.toggle('on', type === 'user');
+  document.getElementById('tt-agent').classList.toggle('on', type === 'agent');
+  document.getElementById('agent-login-info').style.display = type === 'agent' ? 'block' : 'none';
+  document.getElementById('agent-signup-info').style.display = type === 'agent' ? 'block' : 'none';
+  document.getElementById('agent-license-fg').style.display = type === 'agent' ? 'block' : 'none';
+  document.getElementById('agency-fg').style.display = type === 'agent' ? 'block' : 'none';
+  document.getElementById('login-btn').textContent = type === 'agent' ? 'Log In as Agent' : 'Log In';
+  document.getElementById('signup-btn').textContent = type === 'agent' ? 'Create Agent Account →' : 'Create Account →';
+}
+
+function doLogin() {
+  closeAuth();
+  if(currentUserType === 'agent') { nav('agent'); }
+  else { nav('profile'); }
+}
+
+function doSignup() {
+  closeAuth();
+  if(currentUserType === 'agent') { nav('agent'); }
+  else { nav('profile'); }
+}
+
+// ════════════════════════════════
+// ADMIN
+// ════════════════════════════════
+function openAdminLogin() { nav('admin-login'); }
+
+function doAdminLogin() {
+  const em = document.getElementById('al-email')?.value || '';
+  const pw = document.getElementById('al-pw')?.value || '';
+  if(em && pw) {
+    nav('admin');
+    renderAdminTours();
+  } else {
+    alert('Please enter your credentials.');
+  }
+}
+
+function renderAdminTours() {
+  const g = document.getElementById('admin-tour-grid');
+  if(!g) return;
+  g.innerHTML = TOURS.map(t => `
+    <div class="tmgmt-card">
+      <div class="tmgmt-img"><img src="${t.img}" alt="${t.name}" loading="lazy"/></div>
+      <div class="tmgmt-body">
+        <div class="tmgmt-name">${t.name}</div>
+        <div class="tmgmt-meta">${t.dur} · $${t.price} · ⭐${t.rating}</div>
+        <div class="tmgmt-acts">
+          <button class="btn btn-o btn-sm" onclick="alert('Edit tour — full build feature')">✏️ Edit</button>
+          <button class="btn btn-sm" style="background:#FEE2E2;color:#991B1B;border:none;border-radius:4px;padding:.38rem .85rem;cursor:pointer;font-family:Nunito,sans-serif;font-size:.78rem;font-weight:700" onclick="alert('Delete — full build feature')">Delete</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function showAdmin(id, el) {
+  document.querySelectorAll('.apanel').forEach(p => p.classList.remove('on'));
+  document.getElementById('admin-' + id)?.classList.add('on');
+  document.querySelectorAll('.admin-sidebar .snav a').forEach(a => a.classList.remove('on'));
+  if(el) el.classList.add('on');
+}
+
+// ════════════════════════════════
+// PROFILE PANELS
+// ═══════════════
+
+function showPanel(id, el) {
+  document.querySelectorAll('#pg-profile .panel').forEach(p => p.classList.remove('on'));
+  document.getElementById('panel-' + id)?.classList.add('on');
+  document.querySelectorAll('#pg-profile .sidebar .snav a').forEach(a => a.classList.remove('on'));
+  if(el) el.classList.add('on');
+}
+
+function showAgentPanel(id, el) {
+  document.querySelectorAll('#pg-agent .panel').forEach(p => p.classList.remove('on'));
+  document.getElementById('apanel-' + id)?.classList.add('on');
+  document.querySelectorAll('#pg-agent .snav a').forEach(a => a.classList.remove('on'));
+  if(el) el.classList.add('on');
+}
+
+// INIT
+document.addEventListener('DOMContentLoaded', function() {
+  renderHomeTours();
+  filterAndRender();
+});
+</script>
+</body>
+</html>
